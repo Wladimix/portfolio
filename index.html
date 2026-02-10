@@ -18,6 +18,108 @@
         html {
             scroll-behavior: smooth;
             font-size: 16px;
+            overflow-y: scroll;
+        }
+
+        /* Стилизация скролл-бара для WebKit браузеров (Chrome, Safari, Edge) */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #4CAF50, #8BC34A);
+            border-radius: 6px;
+            border: 2px solid #111;
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #8BC34A, #CDDC39);
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb:active {
+            background: linear-gradient(180deg, #2E7D32, #4CAF50);
+        }
+
+        ::-webkit-scrollbar-corner {
+            background: #111;
+        }
+
+        /* Стилизация скролл-бара для Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #4CAF50 #111;
+        }
+
+        /* Для Firefox при наведении */
+        *:hover {
+            scrollbar-color: #8BC34A #111;
+        }
+
+        /* Для Internet Explorer и старых Edge */
+        body {
+            scrollbar-face-color: #4CAF50;
+            scrollbar-track-color: #111;
+            scrollbar-shadow-color: #4CAF50;
+            scrollbar-highlight-color: #8BC34A;
+            scrollbar-3dlight-color: #111;
+            scrollbar-darkshadow-color: #111;
+            scrollbar-arrow-color: #111;
+        }
+
+        /* Дополнительный эффект при скролле */
+        body.scrolling {
+            --scroll-pos: 0;
+        }
+
+        /* Анимация при скролле */
+        @keyframes scrollPulse {
+            0% {
+                box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 15px rgba(76, 175, 80, 0.6);
+            }
+            100% {
+                box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+            }
+        }
+
+        /* Плавная анимация для скроллбара при появлении */
+        ::-webkit-scrollbar-thumb {
+            animation: scrollbarAppear 0.5s ease-out;
+        }
+
+        @keyframes scrollbarAppear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Стили для скролл-бара внутри проектов (уже существующие, оставляем как есть) */
+        .project::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .project::-webkit-scrollbar-track {
+            background: #222;
+            border-radius: 4px;
+        }
+
+        .project::-webkit-scrollbar-thumb {
+            background: #4CAF50;
+            border-radius: 4px;
         }
 
         body {
@@ -194,7 +296,7 @@
             object-fit: contain;
             border-radius: 10px;
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
-            transform: scale(1.25); /* Увеличение размера */
+            transform: scale(1.4); /* Увеличение размера */
             filter: brightness(1.05) contrast(1.05);
         }
 
@@ -206,7 +308,7 @@
             max-width: 650px; /* Увеличенная ширина */
             padding-left: 20px;
             position: relative;
-            background: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон для читаемости */
+            background: rgba(0, 0, 0, 0.2); /* Полупрозрачный фон для читаемости */
             padding: 40px;
             border-radius: 15px;
             backdrop-filter: blur(5px); /* Эффект размытия */
@@ -1493,7 +1595,7 @@
                     <span>Москва, Россия</span>
                 </div>
             </div>
-            <p class="copyright">© 2023 Александр Иванов. Все права защищены.</p>
+            <p class="copyright"><span id="current-year">2023</span> Александр Иванов</p>
         </div>
     </footer>
 
@@ -1503,6 +1605,33 @@
 
         // Логика переключения проектов
         document.addEventListener('DOMContentLoaded', function() {
+            // Обновляем год в футере
+            updateCurrentYear();
+
+            // Обновляем год каждый год (опционально)
+            // Можно также обновлять при скролле до футера
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const footerObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // При первом появлении футера в зоне видимости
+                        // можно обновить год (хотя он уже обновлен при загрузке)
+                        updateCurrentYear();
+                        footerObserver.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const footer = document.querySelector('.footer');
+            if (footer) {
+                footerObserver.observe(footer);
+            }
+
             // Анимация кнопки скачивания резюме
             const downloadBtn = document.querySelector('.download-resume');
             // Сначала показываем кнопку без анимации
@@ -1750,6 +1879,42 @@
                 });
             });
         });
+
+        // Эффект для скролл-бара при скролле
+        let scrollTimeout;
+        document.addEventListener('scroll', function() {
+            document.body.classList.add('scrolling');
+
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(function() {
+                document.body.classList.remove('scrolling');
+            }, 500);
+
+            // Обновляем CSS переменную с позицией скролла
+            const scrollPos = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+            document.documentElement.style.setProperty('--scroll-pos', scrollPos);
+        });
+
+        // Функция для отображения текущего года в футере
+        function updateCurrentYear() {
+            const currentYear = new Date().getFullYear();
+            const yearElement = document.getElementById('current-year');
+
+            if (yearElement) {
+                yearElement.textContent = currentYear;
+
+                // Анимация обновления года
+                gsap.fromTo(yearElement,
+                    { scale: 0.8, opacity: 0.5 },
+                    {
+                        scale: 1,
+                        opacity: 1,
+                        duration: 0.5,
+                        ease: "back.out(1.7)"
+                    }
+                );
+            }
+        }
     </script>
 </body>
 </html>
