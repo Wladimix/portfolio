@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-
     document.getElementById('current-year').innerHTML = new Date().getFullYear();
 
     const projects = document.querySelectorAll('.project');

@@ -493,7 +493,7 @@ body::after {
 
 .projects-container {
     position: relative;
-    min-height: 800px;
+    min-height: 650px;
     margin-bottom: 30px;
 }
 
