@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Портфолио</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/app.css" />
+
+    <script src="https://kit.fontawesome.com/cc1b509ff7.js" crossorigin="anonymous"></script>
+
+    <script src="lib/gsap.min.js" defer></script>
+    <script src="js/main.js" defer></script>
+
+</head>
+<body>
+    <!-- Кнопка скачивания резюме -->
+    <a href="https://ukhta.hh.ru/resume/4784bc2eff0f0e77d00039ed1f72476448426a" class="download-resume" target="_blank">
+        <i class="fas fa-file-alt"></i>
+        <span>Моё резюме</span>
+    </a>
+
+    <!-- Cекция профиля -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <!-- Изображение профиля -->
+            <div class="profile-image-container">
+                <img src="img/hero.png" alt="Мое фото" class="profile-image">
+            </div>
+
+            <!-- Контент профиля -->
+            <div class="hero-content">
+                <h1>Владимир Максимов</h1>
+                <p class="position">Web Developer</p>
+                <p>Привет! Я ищу работу на позицию разработчика в сфере JavaScript (TypeScript) или PHP. Мне интересны как backend, так и frontend, так как я успел поработать в обоих направлениях (но для начала я бы хотел развиваться в одном из этих направлений). Приоритетным (но необязательным) вижу для себя возможность пройти стажировку. Хочу попасть в коллектив, в котором ценится грамотно написанный и читаемый код. Мне будет интересно при необходимости выполнить тестовое задание и рассказать подробней о себе на собеседовании. До связи!</p>
+            </div>
+        </div>
+        <a href="#experience" class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- Секция опыта -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <h2 class="section-title">Опыт работы</h2>
+            <div class="experience-content">
+                <div class="companies">
+                    <h3>Компании</h3>
+                    <ul class="company-list">
+                        <li>
+                            <div class="company-name">СофтХардМейкерз (стартап)</div>
+                            <div class="company-period">Январь 2023 - Февраль 2024</div>
+                            <div class="company-desc">Web разработчик</div>
+                        </li>
+                        <li>
+                            <div class="company-name">ЭМ СИ АРТ</div>
+                            <div class="company-period">Март 2024 - Июль 2024</div>
+                            <div class="company-desc">Web разработчик</div>
+                        </li>
+                        <li>
+                            <div class="company-name">Тепличный комплекс Сосногорский</div>
+                            <div class="company-period">Апрель 2025 - Октябрь 2025</div>
+                            <div class="company-desc">Системный администратор</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="projects">
+                    <h3>Работа и участие в проектах</h3>
+
+                    <!-- Контейнер для проектов -->
+                    <div class="projects-container">
+                        <!-- Проект 1 -->
+                        <div class="project active" id="project1">
+                            <div class="project-icon">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <h3 class="project-title">Приложение курьерской службы доставки.</h3>
+                            <p class="project-description">Веб-приложение представляет собой сервис для управления заказами и курьерами. Позволяет заносить данные об организации в систему, после чего можно работать с её заказами. Многие организации-клиенты (преимущественно рестораны) интегрированы с сервисом управления организацией в облаке. Структура приложения - монолит. Серверная и клиентская части располагаются в одной директории. Веб-сервер - Nginx.</p>
+
+                            <div class="project-results">
+                                <h4>Задачи и обязанности:</h4>
+                                <ul>
+                                    <li>поддержка и доработка приложения (ревью кода, поиск и исправление багов, добавление нового функционала и обновление существующего)</li>
+                                    <li>интеграция с внешними сервисами, преимущественно с IikoCloud (настройка конечных точек для работы с IikoCloud API, настройка шлюзов)</li>
+                                    <li>управление базой данных (работа с очередями задач, расширение посредством миграций, настройка фабрик и сидеров при добавлении нового функционала)</li>
+                                    <li>доработка клиентской части (вёрстка и добавление новых страниц с логикой обработки и отображения данных, полученных с сервера)</li>
+                                    <li>обновление функционала в мобильном приложении курьера</li>
+                                    <li>иногда приходилось настраивать конфигурацию Nginx</li>
+                                </ul>
+                            </div>
+
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML, CSS</span>
+                                <span class="tech-tag">PHP 7 (Laravel, CRUDBooster)</span>
+                                <span class="tech-tag">JavaScript (JQuery, React, Effector)</span>
+                                <span class="tech-tag">Kotlin</span>
+                                <span class="tech-tag">SQL (MySQL)</span>
+                                <span class="tech-tag">Webpack</span>
+                            </div>
+                        </div>
+
+                        <!-- Проект 2 -->
+                        <div class="project" id="project2">
+                            <div class="project-icon">
+                                <i class="fas fa-basketball-ball"></i>
+                            </div>
+                            <h3 class="project-title">Клиентское приложение для управления спортивным табло</h3>
+                            <p class="project-description">Приложение для управления спортивным табло в спортзале (как с планшета, так и с настольного ПК). Предназначается для отслеживания текущей игры. Управляет раундами (таймами), определяет команду-победителя (команду-проигравшего, или ничью) согласно правилам текущей игры (футбол, баскетбол, настольный теннис и другие), отслеживает текущие счёт и время игры, управляет бегущей строкой на табло, запускает демосцены между играми, или во время игр, отображает информацию о командах и о следующей игре, если она состоится.</p>
+
+                            <div class="project-results">
+                                <h4>Задачи и обязанности:</h4>
+                                <p>Разработка приложения с нуля на основе предоставленного API серверной части:</p>
+                                <ul>
+                                    <li>работа с модулем управления демосценами (вёрстка и разработка логики отображения и запуска доступных демосцен)</li>
+                                    <li>работа с модулем управления счётом и настроек текущей и предстоящей игры (вёрстка и разработка логики отображения информации об играх и управления текущей игрой)</li>
+                                    <li>работа с модулем управления бегущей строкой (вёрстка и разработка логики редактирования и запуска бегущей строки, а также шаблонов текста бегущей строки)</li>
+                                </ul>
+                            </div>
+
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML, CSS (Bootstrap)</span>
+                                <span class="tech-tag">JavaScript (React, Redux)</span>
+                                <span class="tech-tag">Webpack</span>
+                            </div>
+                        </div>
+
+                        <!-- Проект 3 -->
+                        <div class="project" id="project3">
+                            <div class="project-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <h3 class="project-title">Серверная часть сайта кадрового центра Москвы</h3>
+                            <p class="project-description">Веб-приложение для размещения вакансий кадрового центра Москвы. Пользователь может зарегистрироваться стандартным способом, а может откликнуться на вакансию в качестве гостя с автоматическим созданием аккаунта и отправкой информации (логин и пароль) на почту. Каждый аккаунт синхронизируется с дистанционной системой обучения Мираполис. Менеджеры могут управлять вакансиями, пользователи - откликаться, администраторы - и то, и другое. Приложение имеет веб-версию (сайт) и терминальную версию (сенсорные терминалы в кадровом центре). Каждая вакансия имеет фото и видео-обложку.</p>
+
+                            <div class="project-results">
+                                <h4>Задачи и обязанности:</h4>
+                                <p>Разработка серверной части приложения с нуля и дальнейшая поддержка:</p>
+                                <ul>
+                                    <li>проектирование архитектуры под шаблон MVC</li>
+                                    <li>настройка основных CRUD-операций (пользователи, вакансии, медиа) и описание API в Swagger</li>
+                                    <li>разработка логики загрузки статических файлов (фото и видео к вакансиям)</li>
+                                    <li>проектирование базы данных</li>
+                                    <li>работа с авторизацией (использование API-токена)</li>
+                                    <li>создание системы ролей (пользователь, менеджер вакансий, мл. администратор, администратор)</li>
+                                    <li>разработка логики интеграции с дистанционной системой обучения Мираполис (шлюзы, очереди задач)</li>
+                                    <li>работа с отправкой данных аккаунта на почту зарегистрированного пользователя (настройка SMTP-сервера, формирование QR-кода с id пользователя, вёрстка шаблонов писем)</li>
+                                    <li>поддержка и доработка приложения (ревью кода, поиск и исправление багов, добавление нового функционала и обновление существующего).</li>
+                                </ul>
+                            </div>
+
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">JavaScript (Node.JS, Express.JS)</span>
+                                <span class="tech-tag">NoSQL (MongoDB)</span>
+                                <span class="tech-tag">Docker</span>
+                            </div>
+                        </div>
+
+                        <!-- Проект 4 -->
+                        <div class="project" id="project4">
+                            <div class="project-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3 class="project-title">Работа в ЭМ СИ АРТ</h3>
+                            <p class="project-description">Здесь было сразу несколько проектов на Bitrix (в основном - модули для официального маркетплейса). Наиболее крупный из них - это тиражное публичное решение для корпоративного портала Bitrix24. Этот функционал представляет собой приложение, написанное на Nest.JS (сервер) и Vue.JS (клиент), интегрированное в Bitrix24. Я работал с серверной частью. Поэтому необходимо было работать также с API системы Bitrix24 и вебхуками. Приложение представляло собой функционал для общения с операторами службы поддержки Avito через мессенджеры Telegram и WhatsApp.</p>
+
+                            <div class="project-tech">
+                                <span class="tech-tag">PHP (Bitrix)</span>
+                                <span class="tech-tag">JavaScript, TypeScript (Nest.JS, TypeORM)</span>
+                                <span class="tech-tag">SQL (ClickHouse)</span>
+                                <span class="tech-tag">WebSocket</span>
+                            </div>
+                        </div>
+
+                        <!-- Проект 5 -->
+                        <div class="project" id="project5">
+                            <div class="project-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <h3 class="project-title">Работа системным администратором</h3>
+                            <p class="project-description">Здесь примерно 70% работы состояло из задач системного администратора, 30% - из задач программиста.</p>
+
+                            <div class="project-results">
+                                <h4>Задачи и обязанности:</h4>
+                                <ul>
+                                    <li>администрирование системы бэкапа серверов на Acronis Backup</li>
+                                    <li>администрирование системы мониторинга Zabbix</li>
+                                    <li>администрирование кластера отказоустойчивости на Hyper-V</li>
+                                    <li>обслуживание ПО системы автоматизации весового контроля (развёрнутой в k3s)</li>
+                                    <li>администрирование ПО системы видеонаблюдения TRASSIR и системы контроля и управления доступом</li>
+                                    <li>администрирование ПО системы управления беспроводным доступом к корпоративной сети UniFi Network и обслуживание точек Wi-Fi</li>
+                                    <li>администрирование серверов на Windows Server 2016, Ubuntu Server 22.04, DHCP, DNS, AD, АТС</li>
+                                    <li>настройка доступа к личным кабинетам пользователей в системе MES "E5. Управление производством</li>
+                                    <li>написание скриптов для терминалов для отображения корпоративной информации и для доступа к личному кабинету в системе MES "E5. Управление производством"</li>
+                                    <li>администрирование сетевого оборудования</li>
+                                    <li>организация и обслуживание компьютерной и телефонной сетей</li>
+                                    <li>обслуживание и настройка орг. техники</li>
+                                    <li>контроль за складом и ТМЦ через 1С-предприятие</li>
+                                    <li>тех. поддержка сотрудников предприятия</li>
+                                </ul>
+                            </div>
+
+                            <div class="project-tech">
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">k3s</span>
+                                <span class="tech-tag">PowerShell, BASH</span>
+                                <span class="tech-tag">Acronis Backup</span>
+                                <span class="tech-tag">Zabbix</span>
+                                <span class="tech-tag">TRASSIR</span>
+                                <span class="tech-tag">UniFi Network</span>
+                                <span class="tech-tag">Windows, Linux</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Навигация для проектов -->
+                    <div class="projects-navigation">
+                        <div class="project-controls">
+                            <div class="project-nav">
+                                <button id="prev-project"><i class="fas fa-chevron-left"></i></button>
+                                <button id="next-project"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                            <div class="project-counter">
+                                <span id="current-project">1</span> / <span id="total-projects">5</span>
+                            </div>
+                        </div>
+
+                        <div class="project-dots">
+                            <div class="dot active" data-index="0"></div>
+                            <div class="dot" data-index="1"></div>
+                            <div class="dot" data-index="2"></div>
+                            <div class="dot" data-index="3"></div>
+                            <div class="dot" data-index="4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция контактов -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Свяжитесь со мной</h2>
+            <p class="contact-subtitle">Есть у Вас есть предложение по работе, свяжитесь со мной удобным для Вас способом.</p>
+
+            <div class="contact-info-container">
+                <div class="contact-cards">
+                    <!-- Карточка с email -->
+                    <div class="contact-card" data-contact-type="email">
+                        <div class="contact-card-icon-container">
+                            <i class="fas fa-envelope contact-card-icon"></i>
+                            <div class="contact-card-icon-glow"></div>
+                        </div>
+                        <h3 class="contact-card-title">Email</h3>
+                        <a href="mailto:m.a.x.i.m.o.v@yandex.ru">
+                            <p class="contact-card-detail">m.a.x.i.m.o.v@yandex.ru</p>
+                        </a>
+                        <div class="contact-card-hover-line"></div>
+                    </div>
+
+                    <!-- Карточка с телефоном -->
+                    <div class="contact-card" data-contact-type="phone">
+                        <div class="contact-card-icon-container">
+                            <i class="fas fa-phone contact-card-icon"></i>
+                            <div class="contact-card-icon-glow"></div>
+                        </div>
+                        <h3 class="contact-card-title">Телефон</h3>
+                        <a href="tel:+79087190021">
+                            <p class="contact-card-detail">+7 (908) 719-00-21</p>
+                        </a>
+                        <div class="contact-card-hover-line"></div>
+                    </div>
+
+                    <!-- Карточка с местоположением -->
+                    <div class="contact-card" data-contact-type="location">
+                        <div class="contact-card-icon-container">
+                            <i class="fas fa-map-marker-alt contact-card-icon"></i>
+                            <div class="contact-card-icon-glow"></div>
+                        </div>
+                        <h3 class="contact-card-title">Местоположение</h3>
+                        <p class="contact-card-detail">Ухта, Россия</p>
+                        <div class="contact-card-hover-line"></div>
+                    </div>
+
+                    <!-- Карточка с соц. сетями -->
+                    <div class="contact-card" data-contact-type="social">
+                        <div class="contact-card-icon-container">
+                            <i class="fas fa-share-alt contact-card-icon"></i>
+                            <div class="contact-card-icon-glow"></div>
+                        </div>
+                        <h3 class="contact-card-title">Социальные сети</h3>
+                        <div class="contact-social-icons">
+                            <a href="https://github.com/Wladimix" class="social-icon" title="GitHub" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://t.me/wladimix" class="social-icon" title="Telegram" target="_blank">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                            <a href="https://wa.me/79087190021" class="social-icon" title="WhatsApp" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                        <div class="contact-card-hover-line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>m.a.x.i.m.o.v@yandex.ru</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+7 (908) 719-00-21</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Ухта, Россия</span>
+                </div>
+            </div>
+            <p class="copyright"><span id="current-year"></span> | Владимир Максимов</p>
+        </div>
+    </footer>
+</body>
+</html>
