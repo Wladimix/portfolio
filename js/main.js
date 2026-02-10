@@ -2,8 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('current-year').innerHTML = new Date().getFullYear();
 
-    animatedDownloadResumeButton();
-
     const projects = document.querySelectorAll('.project');
     const prevBtn = document.getElementById('prev-project');
     const nextBtn = document.getElementById('next-project');
@@ -94,31 +92,4 @@ document.addEventListener('DOMContentLoaded', function() {
         ease: 'power3.out',
         delay: 0.5
     });
-
-    // Анимация появления элементов при скролле
-    gsap.utils.toArray('.company-list li').forEach(element => {
-        gsap.from(element, {
-            scrollTrigger: {
-                trigger: element,
-                start: 'top 80%',
-                end: 'bottom 20%',
-                toggleActions: 'play none none reverse'
-            },
-            opacity: 0,
-            y: 50,
-            duration: 1
-        });
-    });
 });
-
-// Анимация кнопки скачивания резюме
-function animatedDownloadResumeButton() {
-    const downloadBtn = document.querySelector('.download-resume');
-
-    downloadBtn.style.opacity = '1';
-    downloadBtn.style.transform = 'translateY(0)';
-
-    setTimeout(() => {
-        downloadBtn.classList.add('visible');
-    }, 500);
-}
