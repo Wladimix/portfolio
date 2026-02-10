@@ -162,6 +162,8 @@
             justify-content: space-between;
             width: 100%;
             height: 100%;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-bg {
@@ -182,45 +184,59 @@
             justify-content: flex-end;
             height: 100%;
             padding-right: 50px;
+            position: relative;
+            z-index: 2;
         }
 
         .profile-image {
-            max-height: 85%;
-            max-width: 100%;
+            max-height: 95%;
+            max-width: 95%;
             object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
+            transform: scale(1.25); /* Увеличение размера */
+            filter: brightness(1.05) contrast(1.05);
         }
 
         /* Контент героя */
         .hero-content {
             flex: 1;
             text-align: left;
-            z-index: 1;
-            max-width: 600px;
+            z-index: 3; /* Выше изображения */
+            max-width: 650px; /* Увеличенная ширина */
             padding-left: 20px;
+            position: relative;
+            background: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон для читаемости */
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px); /* Эффект размытия */
+            margin-left: -50px; /* Наложение на изображение */
         }
 
         /* ЗЕЛЕНЫЕ ОТТЕНКИ */
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
+            font-size: 4rem; /* Увеличен с 3.5rem */
+            margin-bottom: 15px;
             background: linear-gradient(90deg, #4CAF50, #8BC34A, #CDDC39);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
         .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: #ddd;
+            font-size: 1.3rem; /* Увеличен с 1.3rem */
+            margin-bottom: 25px;
+            color: #eee; /* Более светлый цвет */
+            line-height: 1.8;
         }
 
         .hero .position {
-            font-size: 1.8rem;
-            font-weight: 500;
-            color: #8BC34A; /* Светло-зеленый */
-            margin-bottom: 30px;
+            font-size: 2.2rem; /* Увеличен с 1.8rem */
+            font-weight: 600; /* Более жирный */
+            color: #8BC34A;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
         }
 
         .scroll-down {
@@ -341,7 +357,7 @@
 
         .projects-container {
             position: relative;
-            min-height: 600px;
+            min-height: 800px;
             margin-bottom: 30px;
         }
 
@@ -429,6 +445,11 @@
             color: #8BC34A; /* Светло-зеленый */
             margin-bottom: 10px;
             font-size: 1.2rem;
+        }
+
+        .project-results p {
+            color: #ccc;
+            font-size: 1rem;
         }
 
         .project-results ul {
@@ -531,7 +552,7 @@
             border-color: #8BC34A; /* Светло-зеленый */
         }
 
-        /* Секция контактов */
+        /* Секция контактов - обновленная версия без формы */
         .contact {
             padding: 100px 0;
             background-color: #111;
@@ -540,7 +561,7 @@
         .contact h2 {
             text-align: center;
             font-size: 2.8rem;
-            margin-bottom: 60px;
+            margin-bottom: 30px;
             position: relative;
         }
 
@@ -560,137 +581,391 @@
             text-align: center;
             color: #8BC34A;
             font-size: 1.3rem;
-            margin-bottom: 50px;
-            max-width: 700px;
+            margin-bottom: 70px;
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .contact-form-container {
-            max-width: 800px;
+        .contact-info-container {
+            max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .contact-card {
             background-color: #151515;
             border-radius: 15px;
-            padding: 50px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-            border: 1px solid #333;
-        }
-
-        .form-row {
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid #252525;
             display: flex;
-            gap: 30px;
-            margin-bottom: 30px;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            min-height: 250px;
         }
 
-        @media (max-width: 768px) {
-            .form-row {
-                flex-direction: column;
-                gap: 20px;
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border-color: #4CAF50;
+            background-color: #1a1a1a;
+        }
+
+        .contact-card:hover .contact-card-icon {
+            transform: translateY(-5px) scale(1.1);
+            color: #8BC34A;
+        }
+
+        .contact-card:hover .contact-card-hover-line {
+            width: 80%;
+        }
+
+        .contact-card-icon-container {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .contact-card-icon {
+            font-size: 3.5rem;
+            color: #4CAF50;
+            position: relative;
+            z-index: 2;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Эффект свечения для иконки */
+        .contact-card-icon-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(76, 175, 80, 0.3) 0%, rgba(76, 175, 80, 0) 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+
+        .contact-card:hover .contact-card-icon-glow {
+            opacity: 1;
+            animation: gentle-pulse 2s infinite ease-in-out;
+        }
+
+        /* Более плавное и эстетичное пульсирование */
+        @keyframes gentle-pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(0.9);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 0.3;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(0.9);
+                opacity: 0.7;
             }
         }
 
-        .form-group {
-            flex: 1;
+        .contact-card-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .contact-card-detail {
+            color: #ddd;
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .contact-card-hover-line {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A);
+            border-radius: 2px;
+            transition: width 0.5s ease;
+        }
+
+        /* Стили для карточки с социальными сетями (особые настройки) */
+        .contact-card[data-contact-type="social"] .contact-card-detail {
+            margin-bottom: 20px;
+        }
+
+        .contact-social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(76, 175, 80, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-icon:hover::before {
+            opacity: 1;
+        }
+
+        /* Цвета при наведении для разных иконок */
+        .social-icon:nth-child(1):hover {
+            background-color: #333; /* GitHub цвет - темно-серый */
+            color: white;
+        }
+
+        .social-icon:nth-child(2):hover {
+            background-color: #0088cc; /* Telegram цвет */
+            color: white;
+        }
+
+        .social-icon:nth-child(3):hover {
+            background-color: #25D366; /* WhatsApp цвет */
+            color: white;
+        }
+
+        /* Легкий эффект свечения для социальных иконок при наведении */
+        .social-icon:hover {
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
+        }
+
+        /* Дополнительные стили для иконок GitHub */
+        .social-icon .fa-github {
+            font-size: 1.4rem;
+        }
+
+        /* Специфичные цвета для свечения GitHub */
+        .social-icon:nth-child(1):hover {
+            box-shadow: 0 0 15px rgba(51, 51, 51, 0.5);
+        }
+
+        .social-icon:nth-child(2):hover {
+            box-shadow: 0 0 15px rgba(0, 136, 204, 0.5);
+        }
+
+        .social-icon:nth-child(3):hover {
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.5);
+        }
+
+        /* Секция доступности */
+        .contact-availability {
+            background-color: #151515;
+            border-radius: 15px;
+            padding: 40px;
+            border: 1px solid #252525;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .availability-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #8BC34A;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .availability-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .availability-info {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .availability-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .availability-icon {
+            font-size: 2.5rem;
+            color: #4CAF50;
             position: relative;
         }
 
-        .form-group.full-width {
-            width: 100%;
+        /* Свечение для иконок доступности */
+        .availability-icon::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(76, 175, 80, 0.15) 0%, rgba(76, 175, 80, 0) 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .form-label {
-            display: block;
-            margin-bottom: 10px;
-            color: #8BC34A;
-            font-weight: 500;
-            font-size: 1.1rem;
+        .availability-item:hover .availability-icon::after {
+            opacity: 1;
         }
 
-        .form-input,
-        .form-textarea {
-            width: 100%;
-            padding: 15px 20px;
-            background-color: #222;
-            border: 2px solid #333;
-            border-radius: 10px;
+        .availability-details h4 {
             color: #fff;
-            font-size: 1rem;
-            font-family: 'Roboto', sans-serif;
-            transition: all 0.3s ease;
-        }
-
-        .form-input:focus,
-        .form-textarea:focus {
-            outline: none;
-            border-color: #4CAF50;
-            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
-        }
-
-        .form-input:hover,
-        .form-textarea:hover {
-            border-color: #444;
-        }
-
-        .form-textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .form-submit {
-            display: block;
-            width: 100%;
-            padding: 18px;
-            background: linear-gradient(90deg, #4CAF50, #8BC34A);
-            color: #000;
-            border: none;
-            border-radius: 10px;
             font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 40px;
-            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 5px;
         }
 
-        .form-submit:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.3);
+        .availability-details p {
+            color: #bbb;
         }
 
-        .form-submit:active {
-            transform: translateY(-1px);
+        /* Дополнительный эффект для всей карточки при наведении */
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(76, 175, 80, 0.05) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
         }
 
-        .contact-info-side {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 50px;
-            padding-top: 40px;
-            border-top: 1px solid #333;
-            flex-wrap: wrap;
-            gap: 30px;
+        .contact-card:hover::before {
+            opacity: 1;
         }
 
-        .contact-method {
-            flex: 1;
-            min-width: 200px;
-            text-align: center;
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .contact-cards {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
         }
 
-        .contact-method i {
-            font-size: 2.5rem;
-            color: #4CAF50;
-            margin-bottom: 15px;
+        @media (max-width: 768px) {
+            .contact-cards {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .contact-card {
+                padding: 35px 25px;
+                min-height: 220px;
+            }
+
+            .availability-info {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .contact-availability {
+                padding: 30px 25px;
+            }
+
+            .contact-card-icon {
+                font-size: 3rem;
+            }
+
+            .contact-card-icon-glow {
+                width: 60px;
+                height: 60px;
+            }
         }
 
-        .contact-method h4 {
-            color: #8BC34A;
-            margin-bottom: 10px;
-            font-size: 1.3rem;
-        }
+        @media (max-width: 480px) {
+            .contact h2 {
+                font-size: 2.2rem;
+            }
 
-        .contact-method p {
-            color: #ccc;
+            .contact-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 50px;
+            }
+
+            .contact-card-title {
+                font-size: 1.3rem;
+            }
+
+            .contact-card-detail {
+                font-size: 1.1rem;
+            }
+
+            .contact-card-icon {
+                font-size: 2.8rem;
+            }
+
+            .contact-card-icon-glow {
+                width: 55px;
+                height: 55px;
+            }
+
+            .social-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
         }
 
         /* Футер */
@@ -735,11 +1010,15 @@
 
         @media (max-width: 992px) {
             .hero h1 {
-                font-size: 2.8rem;
+                font-size: 3.2rem;
             }
 
             .hero .position {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1.3rem;
             }
 
             .section-title, .contact h2 {
@@ -751,7 +1030,8 @@
             }
 
             .hero-content {
-                padding-left: 10px;
+                margin-left: -30px;
+                padding: 30px;
             }
 
             .contact-form-container {
@@ -768,32 +1048,42 @@
 
             .hero .container {
                 flex-direction: column;
-                padding: 0 20px;
             }
 
             .hero-content {
                 text-align: center;
+                margin-left: 0;
+                margin-top: -80px; /* Наложение на изображение в мобильной версии */
+                order: 2;
+                width: 90%;
                 max-width: 100%;
-                padding-left: 0;
-                margin-bottom: 50px;
-                order: 1;
             }
 
             .profile-image-container {
+                order: 1;
                 padding-right: 0;
                 justify-content: center;
-                order: 2;
             }
 
             .profile-image {
-                max-height: 400px;
+                max-height: 450px;
+                max-width: 450px;
+                transform: scale(1);
             }
 
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
 
-            .hero p, .contact-subtitle {
+            .hero .position {
+                font-size: 1.6rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .contact-subtitle {
                 font-size: 1.1rem;
             }
 
@@ -826,6 +1116,11 @@
         }
 
         @media (max-width: 480px) {
+            .hero-content {
+                padding: 25px 20px;
+                margin-top: -60px;
+            }
+
             .projects-container {
                 min-height: 700px;
             }
@@ -840,11 +1135,15 @@
             }
 
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2.4rem;
             }
 
             .hero .position {
-                font-size: 1.3rem;
+                font-size: 1.4rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
             }
 
             .contact-form-container {
@@ -853,6 +1152,11 @@
 
             .form-input, .form-textarea {
                 padding: 12px 15px;
+            }
+
+            .profile-image {
+                max-height: 350px;
+                max-width: 350px;
             }
         }
     </style>
@@ -868,19 +1172,19 @@
     <section class="hero" id="hero">
         <div class="hero-bg"></div>
         <div class="container">
-            <!-- Контент героя - теперь слева -->
-            <div class="hero-content">
-                <h1>Александр Иванов</h1>
-                <p class="position">Digital-маркетолог & Project Manager</p>
-                <p>Более 7 лет опыта в digital-маркетинге, управлении проектами и создании успешных кампаний для брендов различных отраслей. Специализируюсь на комплексных digital-стратегиях, которые приносят измеримые результаты.</p>
-            </div>
-
-            <!-- Изображение профиля - теперь справа -->
+            <!-- Изображение профиля -->
             <div class="profile-image-container">
                 <!-- ВСТАВЬТЕ СВОЕ ИЗОБРАЖЕНИЕ ЗДЕСЬ -->
                 <!-- Замените src на путь к вашему PNG изображению -->
                 <!-- Пример: <img src="images/my-photo.png" alt="Мое фото" class="profile-image"> -->
                 <img src="half-final.png" alt="Мое фото" class="profile-image">
+            </div>
+
+            <!-- Контент героя -->
+            <div class="hero-content">
+                <h1>Владимир Максимов</h1>
+                <p class="position">Web Developer</p>
+                <p>Привет! Я ищу работу на позицию разработчика в сфере JavaScript (TypeScript) или PHP. Мне интересны как backend, так и frontend, так как я успел поработать в обоих направлениях (но для начала я бы хотел развиваться в одном из этих направлений). Приоритетным (но необязательным) вижу для себя возможность пройти стажировку. Хочу попасть в коллектив, в котором ценится грамотно написанный и читаемый код. Мне будет интересно при необходимости выполнить тестовое задание и рассказать подробней о себе на собеседовании. До связи!</p>
             </div>
         </div>
         <a href="#experience" class="scroll-down">
@@ -897,99 +1201,104 @@
                     <h3>Кампании</h3>
                     <ul class="company-list">
                         <li>
-                            <div class="company-name">Digital Waves Agency</div>
-                            <div class="company-period">2020 - настоящее время</div>
-                            <div class="company-desc">Руководитель отдела digital-маркетинга. Управление командой из 12 человек, разработка стратегий для клиентов, контроль бюджета кампаний.</div>
+                            <div class="company-name">СофтХардМейкерз (стартап)</div>
+                            <div class="company-period">Январь 2023 - Февраль 2024</div>
+                            <div class="company-desc">Web разработчик</div>
                         </li>
                         <li>
-                            <div class="company-name">BrandVision</div>
-                            <div class="company-period">2018 - 2020</div>
-                            <div class="company-desc">Старший маркетолог. Разработка и реализация маркетинговых кампаний, анализ рынка, управление рекламным бюджетом до 5 млн руб.</div>
+                            <div class="company-name">ЭМ СИ АРТ</div>
+                            <div class="company-period">Март 2024 - Июль 2020</div>
+                            <div class="company-desc">Web разработчик</div>
                         </li>
                         <li>
-                            <div class="company-name">MarketGrow</div>
-                            <div class="company-period">2016 - 2018</div>
-                            <div class="company-desc">Маркетолог-аналитик. Анализ эффективности кампаний, подготовка отчетов, исследование ЦА, сегментация и построение воронок продаж.</div>
-                        </li>
-                        <li>
-                            <div class="company-name">StartUp Boost</div>
-                            <div class="company-period">2015 - 2016</div>
-                            <div class="company-desc">Младший маркетолог. Поддержка маркетинговых активностей, работа с контентом, администрирование соц. сетей, подготовка презентаций.</div>
+                            <div class="company-name">Тепличный комплекс Сосногорский</div>
+                            <div class="company-period">Апрель 2025 - Октябрь 2025</div>
+                            <div class="company-desc">Системный администратор</div>
                         </li>
                     </ul>
                 </div>
 
                 <div class="projects">
-                    <h3>Проекты</h3>
+                    <h3>Работа и участие в проектах</h3>
 
                     <!-- Контейнер для проектов -->
                     <div class="projects-container">
                         <!-- Проект 1 -->
                         <div class="project active" id="project1">
                             <div class="project-icon">
-                                <i class="fas fa-chart-line"></i>
+                                <i class="fas fa-truck"></i>
                             </div>
-                            <h3 class="project-title">Кампания для FinTech стартапа</h3>
-                            <p class="project-description">Разработка и реализация комплексной digital-кампании для финансового стартапа, включающая контент-маркетинг, таргетированную рекламу и партнерскую программу.</p>
+                            <h3 class="project-title">Приложение курьерской службы доставки.</h3>
+                            <p class="project-description">Веб-приложение представляет собой сервис для управления заказами и курьерами. Позволяет заносить данные об организации в систему, после чего можно работать с её заказами. Многие организации-клиенты (преимущественно рестораны) интегрированы с сервисом управления организацией в облаке. Структура приложения - монолит. Серверная и клиентская части располагаются в одной директории. Веб-сервер - Nginx.</p>
 
                             <div class="project-results">
-                                <h4>Ключевые результаты:</h4>
+                                <h4>Задачи и обязанности:</h4>
                                 <ul>
-                                    <li>Увеличение клиентской базы на 300% за 6 месяцев</li>
-                                    <li>Снижение стоимости привлечения клиента на 40%</li>
-                                    <li>Запуск 3 новых каналов привлечения</li>
+                                    <li>поддержка и доработка приложения (ревью кода, поиск и исправление багов, добавление нового функционала и обновление существующего)</li>
+                                    <li>интеграция с внешними сервисами, преимущественно с IikoCloud (настройка конечных точек для работы с IikoCloud API, настройка шлюзов)</li>
+                                    <li>управление базой данных (работа с очередями задач, расширение посредством миграций, настройка фабрик и сидеров при добавлении нового функционала)</li>
+                                    <li>доработка клиентской части (вёрстка и добавление новых страниц с логикой обработки и отображения данных, полученных с сервера)</li>
+                                    <li>обновление функционала в мобильном приложении курьера</li>
+                                    <li>иногда приходилось настраивать конфигурацию Nginx</li>
                                 </ul>
                             </div>
 
                             <div class="project-tech">
-                                <span class="tech-tag">Контент-маркетинг</span>
-                                <span class="tech-tag">Таргетированная реклама</span>
-                                <span class="tech-tag">Аналитика</span>
-                                <span class="tech-tag">SEO</span>
-                                <span class="tech-tag">Партнерские программы</span>
+                                <span class="tech-tag">HTML, CSS</span>
+                                <span class="tech-tag">PHP 7 (Laravel, CRUDBooster)</span>
+                                <span class="tech-tag">JavaScript (JQuery, React, Effector)</span>
+                                <span class="tech-tag">Kotlin</span>
+                                <span class="tech-tag">SQL (MySQL)</span>
+                                <span class="tech-tag">Webpack</span>
                             </div>
                         </div>
 
                         <!-- Проект 2 -->
                         <div class="project" id="project2">
                             <div class="project-icon">
-                                <i class="fas fa-utensils"></i>
+                                <i class="fas fa-basketball-ball"></i>
                             </div>
-                            <h3 class="project-title">Rebranding для сети ресторанов</h3>
-                            <p class="project-description">Полный ребрендинг и запуск новой маркетинговой стратегии для сети из 15 ресторанов. Включал разработку нового позиционирования, запуск лояльностной программы и интеграцию с агрегаторами доставки.</p>
+                            <h3 class="project-title">Клиентское приложение для управления спортивным табло</h3>
+                            <p class="project-description">Приложение для управления спортивным табло в спортзале (как с планшета, так и с настольного ПК). Предназначается для отслеживания текущей игры. Управляет раундами (таймами), определяет команду-победителя (команду-проигравшего, или ничью) согласно правилам текущей игры (футбол, баскетбол, настольный теннис и другие), отслеживает текущие счёт и время игры, управляет бегущей строкой на табло, запускает демосцены между играми, или во время игр, отображает информацию о командах и о следующей игре, если она состоится.</p>
 
                             <div class="project-results">
-                                <h4>Ключевые результаты:</h4>
+                                <h4>Задачи и обязанности:</h4>
+                                <p>Разработка приложения с нуля на основе предоставленного API серверной части:</p>
                                 <ul>
-                                    <li>Рост выручки на 45% за год</li>
-                                    <li>Увеличение среднего чека на 22%</li>
-                                    <li>Запуск мобильного приложения с 25K+ установок</li>
+                                    <li>работа с модулем управления демосценами (вёрстка и разработка логики отображения и запуска доступных демосцен)</li>
+                                    <li>работа с модулем управления счётом и настроек текущей и предстоящей игры (вёрстка и разработка логики отображения информации об играх и управления текущей игрой)</li>
+                                    <li>работа с модулем управления бегущей строкой (вёрстка и разработка логики редактирования и запуска бегущей строки, а также шаблонов текста бегущей строки)</li>
                                 </ul>
                             </div>
 
                             <div class="project-tech">
-                                <span class="tech-tag">Ребрендинг</span>
-                                <span class="tech-tag">Стратегия</span>
-                                <span class="tech-tag">Лояльность</span>
-                                <span class="tech-tag">Партнерства</span>
-                                <span class="tech-tag">Мобильное приложение</span>
+                                <span class="tech-tag">HTML, CSS (Bootstrap)</span>
+                                <span class="tech-tag">JavaScript (React, Redux)</span>
+                                <span class="tech-tag">Webpack</span>
                             </div>
                         </div>
 
                         <!-- Проект 3 -->
                         <div class="project" id="project3">
                             <div class="project-icon">
-                                <i class="fas fa-shopping-cart"></i>
+                                <i class="fas fa-briefcase"></i>
                             </div>
-                            <h3 class="project-title">E-commerce проект для fashion-бренда</h3>
-                            <p class="project-description">Создание и продвижение интернет-магазина для fashion-бренда с нуля. Реализация CRM-системы, настройка сквозной аналитики и автоматизации маркетинга.</p>
+                            <h3 class="project-title">Серверная часть сайта кадрового центра Москвы</h3>
+                            <p class="project-description">Веб-приложение для размещения вакансий кадрового центра Москвы. Пользователь может зарегистрироваться стандартным способом, а может откликнуться на вакансию в качестве гостя с автоматическим созданием аккаунта и отправкой информации (логин и пароль) на почту. Каждый аккаунт синхронизируется с дистанционной системой обучения Мираполис. Менеджеры могут управлять вакансиями, пользователи - откликаться, администраторы - и то, и другое. Приложение имеет веб-версию (сайт) и терминальную версию (сенсорные терминалы в кадровом центре). Каждая вакансия имеет фото и видео-обложку.</p>
 
                             <div class="project-results">
-                                <h4>Ключевые результаты:</h4>
+                                <h4>Задачи и обязанности:</h4>
+                                <p>Разработка серверной части приложения с нуля и дальнейшая поддержка:</p>
                                 <ul>
-                                    <li>Увеличение онлайн-продаж на 200% за первый год</li>
-                                    <li>Снижение оттока клиентов на 35%</li>
-                                    <li>Внедрение CRM с 95% покрытием клиентской базы</li>
+                                    <li>проектирование архитектуры под шаблон MVC</li>
+                                    <li>настройка основных CRUD-операций (пользователи, вакансии, медиа) и описание API в Swagger</li>
+                                    <li>разработка логики загрузки статических файлов (фото и видео к вакансиям)</li>
+                                    <li>проектирование базы данных</li>
+                                    <li>работа с авторизацией (использование API-токена)</li>
+                                    <li>создание системы ролей (пользователь, менеджер вакансий, мл. администратор, администратор)</li>
+                                    <li>разработка логики интеграции с дистанционной системой обучения Мираполис (шлюзы, очереди задач)</li>
+                                    <li>работа с отправкой данных аккаунта на почту зарегистрированного пользователя (настройка SMTP-сервера, формирование QR-кода с id пользователя, вёрстка шаблонов писем)</li>
+                                    <li>поддержка и доработка приложения (ревью кода, поиск и исправление багов, добавление нового функционала и обновление существующего).</li>
                                 </ul>
                             </div>
 
@@ -1005,43 +1314,44 @@
                         <!-- Проект 4 -->
                         <div class="project" id="project4">
                             <div class="project-icon">
-                                <i class="fas fa-mobile-alt"></i>
+                                <i class="fas fa-cogs"></i>
                             </div>
-                            <h3 class="project-title">Запуск мобильного приложения</h3>
-                            <p class="project-description">Разработка стратегии запуска мобильного приложения для службы доставки. Включала пре-лаунч активность, работу с инфлюенсерами и запуск рекламных кампаний в социальных сетях.</p>
-
-                            <div class="project-results">
-                                <h4>Ключевые результаты:</h4>
-                                <ul>
-                                    <li>Более 50 000 установок в первый месяц</li>
-                                    <li>Средний рейтинг 4.8 в AppStore и Google Play</li>
-                                    <li>Привлечение 15 инфлюенсеров с общим охватом 2M+</li>
-                                </ul>
-                            </div>
+                            <h3 class="project-title">Работа в ЭМ СИ АРТ</h3>
+                            <p class="project-description">Здесь было сразу несколько проектов на Bitrix (в основном - модули для официального маркетплейса). Наиболее крупный из них - это тиражное публичное решение для корпоративного портала Bitrix24. Этот функционал представляет собой приложение, написанное на Nest.JS (сервер) и Vue.JS (клиент), интегрированное в Bitrix24. Я работал с серверной частью. Поэтому необходимо было работать также с API системы Bitrix24 и вебхуками. Приложение представляло собой функционал для общения с операторами службы поддержки Avito через мессенджеры Telegram и WhatsApp.</p>
 
                             <div class="project-tech">
-                                <span class="tech-tag">Мобильный маркетинг</span>
-                                <span class="tech-tag">Инфлюенсеры</span>
-                                <span class="tech-tag">ASO</span>
-                                <span class="tech-tag">Социальные сети</span>
-                                <span class="tech-tag">Партнерский маркетинг</span>
+                                <span class="tech-tag">PHP (Bitrix)</span>
+                                <span class="tech-tag">JavaScript, TypeScript (Nest.JS, TypeORM)</span>
+                                <span class="tech-tag">SQL (ClickHouse)</span>
+                                <span class="tech-tag">WebSocket</span>
                             </div>
                         </div>
 
                         <!-- Проект 5 -->
                         <div class="project" id="project5">
                             <div class="project-icon">
-                                <i class="fas fa-building"></i>
+                                <i class="fas fa-server"></i>
                             </div>
-                            <h3 class="project-title">Корпоративный портал для международной компании</h3>
-                            <p class="project-description">Создание и внедрение корпоративного портала для улучшения внутренних коммуникаций в компании с 2000+ сотрудниками. Интеграция с существующими системами и обучение пользователей.</p>
+                            <h3 class="project-title">Работа системным администратором</h3>
+                            <p class="project-description">Здесь примерно 70% работы состояло из задач системного администратора, 30% - из задач программиста.</p>
 
                             <div class="project-results">
-                                <h4>Ключевые результаты:</h4>
+                                <h4>Задачи и обязанности:</h4>
                                 <ul>
-                                    <li>Сокращение времени на поиск информации на 65%</li>
-                                    <li>Увеличение вовлеченности сотрудников на 40%</li>
-                                    <li>Обучение 2000+ сотрудников работе с системой</li>
+                                    <li>администрирование системы бэкапа серверов на Acronis Backup</li>
+                                    <li>администрирование системы мониторинга Zabbix</li>
+                                    <li>администрирование кластера отказоустойчивости на Hyper-V</li>
+                                    <li>обслуживание ПО системы автоматизации весового контроля (развёрнутой в k3s)</li>
+                                    <li>администрирование ПО системы видеонаблюдения TRASSIR и системы контроля и управления доступом</li>
+                                    <li>администрирование ПО системы управления беспроводным доступом к корпоративной сети UniFi Network и обслуживание точек Wi-Fi</li>
+                                    <li>администрирование серверов на Windows Server 2016, Ubuntu Server 22.04, DHCP, DNS, AD, АТС</li>
+                                    <li>настройка доступа к личным кабинетам пользователей в системе MES "E5. Управление производством</li>
+                                    <li>написание скриптов для терминалов для отображения корпоративной информации и для доступа к личному кабинету в системе MES "E5. Управление производством"</li>
+                                    <li>администрирование сетевого оборудования</li>
+                                    <li>организация и обслуживание компьютерной и телефонной сетей</li>
+                                    <li>обслуживание и настройка орг. техники</li>
+                                    <li>контроль за складом и ТМЦ через 1С-предприятие</li>
+                                    <li>тех. поддержка сотрудников предприятия</li>
                                 </ul>
                             </div>
 
@@ -1084,58 +1394,82 @@
     <section class="contact" id="contact">
         <div class="container">
             <h2>Свяжитесь со мной</h2>
-            <p class="contact-subtitle">Есть вопросы или хотите обсудить проект? Заполните форму ниже, и я свяжусь с вами в ближайшее время.</p>
+            <p class="contact-subtitle">Есть вопросы или хотите обсудить проект? Свяжитесь со мной удобным для вас способом.</p>
 
-            <div class="contact-form-container">
-                <form id="contact-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name" class="form-label">Ваше имя</label>
-                            <input type="text" id="name" class="form-input" placeholder="Введите ваше имя" required>
+            <div class="contact-info-container">
+                <div class="contact-cards">
+                    <!-- Карточка с email -->
+                    <div class="contact-card" data-contact-type="email">
+                        <div class="contact-card-icon-container">
+                            <i class="fas fa-envelope contact-card-icon"></i>
+                            <div class="contact-card-icon-glow"></div>
                         </div>
+                        <h3 class="contact-card-title">Email</h3>
+                        <p class="contact-card-detail">alex.ivanov@portfolio.com</p>
+                        <div class="contact-card-hover-line"></div>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="email" class="form-label">Ваш email</label>
-                            <input type="email" id="email" class="form-input" placeholder="Введите ваш email" required>
+                    <!-- Карточка с телефоном -->
+                    <div class="contact-card" data-contact-type="phone">
+                        <div class="contact-card-icon-container">
+                            <i class="fas fa-phone contact-card-icon"></i>
+                            <div class="contact-card-icon-glow"></div>
                         </div>
+                        <h3 class="contact-card-title">Телефон</h3>
+                        <p class="contact-card-detail">+7 (999) 123-45-67</p>
+                        <div class="contact-card-hover-line"></div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-group full-width">
-                            <label for="subject" class="form-label">Тема сообщения</label>
-                            <input type="text" id="subject" class="form-input" placeholder="О чем вы хотите поговорить?" required>
+                    <!-- Карточка с местоположением -->
+                    <div class="contact-card" data-contact-type="location">
+                        <div class="contact-card-icon-container">
+                            <i class="fas fa-map-marker-alt contact-card-icon"></i>
+                            <div class="contact-card-icon-glow"></div>
                         </div>
+                        <h3 class="contact-card-title">Местоположение</h3>
+                        <p class="contact-card-detail">Москва, Россия</p>
+                        <div class="contact-card-hover-line"></div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-group full-width">
-                            <label for="message" class="form-label">Ваше сообщение</label>
-                            <textarea id="message" class="form-textarea" placeholder="Расскажите подробнее о вашем проекте или вопросе..." required></textarea>
+                    <!-- Карточка с соц. сетями -->
+                    <div class="contact-card" data-contact-type="social">
+                        <div class="contact-card-icon-container">
+                            <i class="fas fa-share-alt contact-card-icon"></i>
+                            <div class="contact-card-icon-glow"></div>
                         </div>
+                        <h3 class="contact-card-title">Социальные сети</h3>
+                        <div class="contact-social-icons">
+                            <a href="#" class="social-icon" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="social-icon" title="Telegram">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                            <a href="#" class="social-icon" title="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                        <div class="contact-card-hover-line"></div>
                     </div>
+                </div>
 
-                    <button type="submit" class="form-submit">
-                        <i class="fas fa-paper-plane"></i> Отправить сообщение
-                    </button>
-                </form>
-
-                <div class="contact-info-side">
-                    <div class="contact-method">
-                        <i class="fas fa-envelope"></i>
-                        <h4>Email</h4>
-                        <p>alex.ivanov@portfolio.com</p>
-                    </div>
-
-                    <div class="contact-method">
-                        <i class="fas fa-phone"></i>
-                        <h4>Телефон</h4>
-                        <p>+7 (999) 123-45-67</p>
-                    </div>
-
-                    <div class="contact-method">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <h4>Местоположение</h4>
-                        <p>Москва, Россия</p>
+                <div class="contact-availability">
+                    <h3 class="availability-title">Доступность</h3>
+                    <div class="availability-info">
+                        <div class="availability-item">
+                            <i class="fas fa-clock availability-icon"></i>
+                            <div class="availability-details">
+                                <h4>Рабочие часы</h4>
+                                <p>Пн-Пт: 9:00 - 18:00</p>
+                            </div>
+                        </div>
+                        <div class="availability-item">
+                            <i class="fas fa-calendar-check availability-icon"></i>
+                            <div class="availability-details">
+                                <h4>Ответ в течение</h4>
+                                <p>24 часов в рабочие дни</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1355,8 +1689,9 @@
             gsap.from('.hero-content', {
                 duration: 1.5,
                 opacity: 0,
-                y: 50,
-                ease: 'power3.out'
+                x: -50,
+                ease: 'power3.out',
+                delay: 0.7
             });
 
             // Анимация для фото
@@ -1364,8 +1699,55 @@
                 duration: 1.8,
                 opacity: 0,
                 x: 100,
+                scale: 0.9, /* Начальный масштаб меньше */
                 ease: 'power3.out',
                 delay: 0.5
+            });
+        });
+
+        // Анимация для карточек контактов
+        gsap.utils.toArray('.contact-card').forEach((card, index) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 0,
+                y: 50,
+                duration: 0.8,
+                delay: index * 0.1
+            });
+        });
+
+        // Анимация для секции доступности
+        gsap.from('.contact-availability', {
+            scrollTrigger: {
+                trigger: '.contact-availability',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 30,
+            duration: 1
+        });
+
+        // Интерактивные эффекты для карточек
+        document.querySelectorAll('.contact-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                gsap.to(this, {
+                    scale: 1.02,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            });
+
+            card.addEventListener('mouseleave', function() {
+                gsap.to(this, {
+                    scale: 1,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
             });
         });
     </script>
