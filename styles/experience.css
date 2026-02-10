@@ -16,7 +16,7 @@
     position: absolute;
     width: 100px;
     height: 4px;
-    background: linear-gradient(90deg, #4CAF50, #8BC34A); /* Зеленый градиент */
+    background: linear-gradient(90deg, #4CAF50, #8BC34A);
     bottom: -15px;
     left: 50%;
     transform: translateX(-50%);
@@ -37,7 +37,7 @@
 .companies h3 {
     font-size: 1.8rem;
     margin-bottom: 30px;
-    color: #8BC34A; /* Светло-зеленый */
+    color: #8BC34A;
 }
 
 .company-list {
@@ -47,7 +47,7 @@
 .company-list li {
     margin-bottom: 25px;
     padding-left: 20px;
-    border-left: 3px solid #4CAF50; /* Зеленый */
+    border-left: 3px solid #4CAF50;
     position: relative;
 }
 
@@ -57,7 +57,7 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: #4CAF50; /* Зеленый */
+    background-color: #4CAF50;
     left: -8px;
     top: 5px;
 }
@@ -87,7 +87,7 @@
 .projects h3 {
     font-size: 1.8rem;
     margin-bottom: 30px;
-    color: #8BC34A; /* Светло-зеленый */
+    color: #8BC34A;
 }
 
 .projects-container {
@@ -132,13 +132,13 @@
 }
 
 .project::-webkit-scrollbar-thumb {
-    background: #4CAF50; /* Зеленый */
+    background: #4CAF50;
     border-radius: 4px;
 }
 
 .project-icon {
     font-size: 3rem;
-    color: #4CAF50; /* Зеленый */
+    color: #4CAF50;
     margin-bottom: 25px;
 }
 
@@ -155,7 +155,7 @@
     position: absolute;
     width: 60px;
     height: 3px;
-    background: linear-gradient(90deg, #4CAF50, #8BC34A); /* Зеленый градиент */
+    background: linear-gradient(90deg, #4CAF50, #8BC34A);
     bottom: 0;
     left: 0;
     border-radius: 2px;
@@ -169,15 +169,15 @@
 }
 
 .project-results {
-    background-color: rgba(76, 175, 80, 0.1); /* Полупрозрачный зеленый */
+    background-color: rgba(76, 175, 80, 0.1);
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 25px;
-    border-left: 4px solid #4CAF50; /* Зеленый */
+    border-left: 4px solid #4CAF50;
 }
 
 .project-results h4 {
-    color: #8BC34A; /* Светло-зеленый */
+    color: #8BC34A;
     margin-bottom: 10px;
     font-size: 1.2rem;
 }
@@ -235,7 +235,7 @@
 }
 
 .project-nav button {
-    background-color: #4CAF50; /* Зеленый */
+    background-color: #4CAF50;
     color: #000;
     border: none;
     width: 50px;
@@ -250,9 +250,9 @@
 }
 
 .project-nav button:hover {
-    background-color: #8BC34A; /* Светло-зеленый */
+    background-color: #8BC34A;
     transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4); /* Зеленый с прозрачностью */
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
 }
 
 .project-counter {
@@ -282,9 +282,9 @@
 }
 
 .dot.active {
-    background-color: #4CAF50; /* Зеленый */
+    background-color: #4CAF50;
     transform: scale(1.2);
-    border-color: #8BC34A; /* Светло-зеленый */
+    border-color: #8BC34A;
 }
 
 @media (max-width: 992px) {

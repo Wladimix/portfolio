@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
         currentProjectIndex = index;
     }
 
-
     // Следующий проект
     nextBtn.addEventListener('click', function() {
         showProject(currentProjectIndex + 1);

@@ -266,7 +266,6 @@
     opacity: 1;
 }
 
-/* Адаптивность */
 @media (max-width: 992px) {
     .contact-cards {
         grid-template-columns: repeat(2, 1fr);

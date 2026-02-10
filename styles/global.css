@@ -106,7 +106,7 @@ body::after {
     background: linear-gradient(90deg, rgba(76, 175, 80, 0) 0%, rgba(76, 175, 80, 0.25) 100%);
 }
 
-/* Эффект свечения появляется только на очень широких экранах */
+/* Эффект свечения для очень широких экранов */
 @media (min-width: 1400px) {
     body::before,
     body::after {
