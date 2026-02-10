@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Эффект зеленого свечения по краям */
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            height: 100%;
+            width: 100px;
+            z-index: 9998;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        body::before {
+            left: 0;
+            background: linear-gradient(90deg, rgba(76, 175, 80, 0.25) 0%, rgba(76, 175, 80, 0) 100%);
+        }
+
+        body::after {
+            right: 0;
+            background: linear-gradient(90deg, rgba(76, 175, 80, 0) 0%, rgba(76, 175, 80, 0.25) 100%);
+        }
+
+        /* Эффект свечения появляется только на очень широких экранах */
+        @media (min-width: 1400px) {
+            body::before,
+            body::after {
+                opacity: 0.3;
+            }
+        }
+
+        @media (min-width: 1600px) {
+            body::before,
+            body::after {
+                opacity: 0.4;
+                width: 150px;
+            }
+        }
+
+        @media (min-width: 1920px) {
+            body::before,
+            body::after {
+                opacity: 0.5;
+                width: 200px;
+            }
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Кнопка скачивания резюме */
+        .download-resume {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 10000;
+            padding: 12px 25px;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A);
+            color: #000;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.3);
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            opacity: 0; /* Начальная прозрачность для анимации */
+            transform: translateY(-20px); /* Начальное положение для анимации */
+        }
+
+        .download-resume.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .download-resume:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+            background: linear-gradient(90deg, #8BC34A, #CDDC39);
+        }
+
+        .download-resume:active {
+            transform: translateY(-1px);
+        }
+
+        /* Адаптивность кнопки */
+        @media (max-width: 768px) {
+            .download-resume {
+                top: 20px;
+                right: 20px;
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .download-resume span {
+                display: none; /* Скрываем текст на мобильных */
+            }
+
+            .download-resume i {
+                margin: 0;
+            }
+        }
+
+        /* Герой секция */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9));
+            z-index: -2;
+        }
+
+        /* Изображение профиля */
+        .profile-image-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100%;
+            padding-right: 50px;
+        }
+
+        .profile-image {
+            max-height: 85%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        /* Контент героя */
+        .hero-content {
+            flex: 1;
+            text-align: left;
+            z-index: 1;
+            max-width: 600px;
+            padding-left: 20px;
+        }
+
+        /* ЗЕЛЕНЫЕ ОТТЕНКИ */
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A, #CDDC39);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+
+        .hero .position {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #8BC34A; /* Светло-зеленый */
+            margin-bottom: 30px;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* Секция опыта */
+        .experience {
+            padding: 100px 0;
+            min-height: 100vh;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A); /* Зеленый градиент */
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .experience-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+
+        .companies {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .companies h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #8BC34A; /* Светло-зеленый */
+        }
+
+        .company-list {
+            list-style: none;
+        }
+
+        .company-list li {
+            margin-bottom: 25px;
+            padding-left: 20px;
+            border-left: 3px solid #4CAF50; /* Зеленый */
+            position: relative;
+        }
+
+        .company-list li::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #4CAF50; /* Зеленый */
+            left: -8px;
+            top: 5px;
+        }
+
+        .company-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .company-period {
+            color: #aaa;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .company-desc {
+            color: #ccc;
+        }
+
+        /* Секция проектов */
+        .projects {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .projects h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #8BC34A; /* Светло-зеленый */
+        }
+
+        .projects-container {
+            position: relative;
+            min-height: 600px;
+            margin-bottom: 30px;
+        }
+
+        .project {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(30px);
+            transition: all 0.5s ease;
+            background-color: #111;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            pointer-events: none;
+            overflow-y: auto;
+        }
+
+        .project.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+            pointer-events: auto;
+        }
+
+        .project::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .project::-webkit-scrollbar-track {
+            background: #222;
+            border-radius: 4px;
+        }
+
+        .project::-webkit-scrollbar-thumb {
+            background: #4CAF50; /* Зеленый */
+            border-radius: 4px;
+        }
+
+        .project-icon {
+            font-size: 3rem;
+            color: #4CAF50; /* Зеленый */
+            margin-bottom: 25px;
+        }
+
+        .project-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #fff;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .project-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A); /* Зеленый градиент */
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .project-description {
+            color: #ccc;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .project-results {
+            background-color: rgba(76, 175, 80, 0.1); /* Полупрозрачный зеленый */
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-left: 4px solid #4CAF50; /* Зеленый */
+        }
+
+        .project-results h4 {
+            color: #8BC34A; /* Светло-зеленый */
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .project-results ul {
+            list-style-position: inside;
+            color: #ddd;
+        }
+
+        .project-results li {
+            margin-bottom: 8px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            background-color: #222;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            border: 1px solid #444;
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            background-color: #333;
+            transform: translateY(-2px);
+        }
+
+        /* Элементы управления проектами */
+        .projects-navigation {
+            margin-top: 20px;
+        }
+
+        .project-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .project-nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-nav button {
+            background-color: #4CAF50; /* Зеленый */
+            color: #000;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-nav button:hover {
+            background-color: #8BC34A; /* Светло-зеленый */
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4); /* Зеленый с прозрачностью */
+        }
+
+        .project-counter {
+            display: flex;
+            align-items: center;
+            color: #aaa;
+            font-size: 1.1rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+
+        .project-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: #444;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .dot.active {
+            background-color: #4CAF50; /* Зеленый */
+            transform: scale(1.2);
+            border-color: #8BC34A; /* Светло-зеленый */
+        }
+
+        /* Секция контактов */
+        .contact {
+            padding: 100px 0;
+            background-color: #111;
+        }
+
+        .contact h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .contact h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .contact-subtitle {
+            text-align: center;
+            color: #8BC34A;
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #151515;
+            border-radius: 15px;
+            padding: 50px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        .form-group {
+            flex: 1;
+            position: relative;
+        }
+
+        .form-group.full-width {
+            width: 100%;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            color: #8BC34A;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 15px 20px;
+            background-color: #222;
+            border: 2px solid #333;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+            font-family: 'Roboto', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
+
+        .form-input:hover,
+        .form-textarea:hover {
+            border-color: #444;
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A);
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 40px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.3);
+        }
+
+        .form-submit:active {
+            transform: translateY(-1px);
+        }
+
+        .contact-info-side {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 40px;
+            border-top: 1px solid #333;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .contact-method {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .contact-method i {
+            font-size: 2.5rem;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+
+        .contact-method h4 {
+            color: #8BC34A;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .contact-method p {
+            color: #ccc;
+        }
+
+        /* Футер */
+        .footer {
+            padding: 50px 0;
+            text-align: center;
+            background-color: #111;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ddd;
+            font-size: 1.1rem;
+        }
+
+        .contact-item i {
+            color: #4CAF50; /* Зеленый */
+            font-size: 1.3rem;
+        }
+
+        .copyright {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1200px) {
+            .hero .container {
+                padding: 0 40px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero .position {
+                font-size: 1.5rem;
+            }
+
+            .section-title, .contact h2 {
+                font-size: 2.3rem;
+            }
+
+            .profile-image-container {
+                padding-right: 30px;
+            }
+
+            .hero-content {
+                padding-left: 10px;
+            }
+
+            .contact-form-container {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                height: auto;
+                min-height: 100vh;
+                padding: 80px 0;
+            }
+
+            .hero .container {
+                flex-direction: column;
+                padding: 0 20px;
+            }
+
+            .hero-content {
+                text-align: center;
+                max-width: 100%;
+                padding-left: 0;
+                margin-bottom: 50px;
+                order: 1;
+            }
+
+            .profile-image-container {
+                padding-right: 0;
+                justify-content: center;
+                order: 2;
+            }
+
+            .profile-image {
+                max-height: 400px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p, .contact-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section-title, .contact h2 {
+                font-size: 2rem;
+            }
+
+            .experience-content {
+                flex-direction: column;
+            }
+
+            .project-controls {
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+            }
+
+            .contact-info, .contact-info-side {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .project {
+                padding: 30px 20px;
+            }
+
+            .projects-container {
+                min-height: 650px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .projects-container {
+                min-height: 700px;
+            }
+
+            .project {
+                padding: 25px 15px;
+            }
+
+            .project-nav button {
+                width: 45px;
+                height: 45px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero .position {
+                font-size: 1.3rem;
+            }
+
+            .contact-form-container {
+                padding: 30px 20px;
+            }
+
+            .form-input, .form-textarea {
+                padding: 12px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Кнопка скачивания резюме -->
+    <a href="resume.pdf" class="download-resume" download>
+        <i class="fas fa-download"></i>
+        <span>Скачать резюме</span>
+    </a>
+
+    <!-- Герой секция -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <!-- Контент героя - теперь слева -->
+            <div class="hero-content">
+                <h1>Александр Иванов</h1>
+                <p class="position">Digital-маркетолог & Project Manager</p>
+                <p>Более 7 лет опыта в digital-маркетинге, управлении проектами и создании успешных кампаний для брендов различных отраслей. Специализируюсь на комплексных digital-стратегиях, которые приносят измеримые результаты.</p>
+            </div>
+
+            <!-- Изображение профиля - теперь справа -->
+            <div class="profile-image-container">
+                <!-- ВСТАВЬТЕ СВОЕ ИЗОБРАЖЕНИЕ ЗДЕСЬ -->
+                <!-- Замените src на путь к вашему PNG изображению -->
+                <!-- Пример: <img src="images/my-photo.png" alt="Мое фото" class="profile-image"> -->
+                <img src="/half-final.png" alt="Мое фото" class="profile-image">
+            </div>
+        </div>
+        <a href="#experience" class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- Секция опыта -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <h2 class="section-title">Опыт работы</h2>
+            <div class="experience-content">
+                <div class="companies">
+                    <h3>Кампании</h3>
+                    <ul class="company-list">
+                        <li>
+                            <div class="company-name">Digital Waves Agency</div>
+                            <div class="company-period">2020 - настоящее время</div>
+                            <div class="company-desc">Руководитель отдела digital-маркетинга. Управление командой из 12 человек, разработка стратегий для клиентов, контроль бюджета кампаний.</div>
+                        </li>
+                        <li>
+                            <div class="company-name">BrandVision</div>
+                            <div class="company-period">2018 - 2020</div>
+                            <div class="company-desc">Старший маркетолог. Разработка и реализация маркетинговых кампаний, анализ рынка, управление рекламным бюджетом до 5 млн руб.</div>
+                        </li>
+                        <li>
+                            <div class="company-name">MarketGrow</div>
+                            <div class="company-period">2016 - 2018</div>
+                            <div class="company-desc">Маркетолог-аналитик. Анализ эффективности кампаний, подготовка отчетов, исследование ЦА, сегментация и построение воронок продаж.</div>
+                        </li>
+                        <li>
+                            <div class="company-name">StartUp Boost</div>
+                            <div class="company-period">2015 - 2016</div>
+                            <div class="company-desc">Младший маркетолог. Поддержка маркетинговых активностей, работа с контентом, администрирование соц. сетей, подготовка презентаций.</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="projects">
+                    <h3>Проекты</h3>
+
+                    <!-- Контейнер для проектов -->
+                    <div class="projects-container">
+                        <!-- Проект 1 -->
+                        <div class="project active" id="project1">
+                            <div class="project-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3 class="project-title">Кампания для FinTech стартапа</h3>
+                            <p class="project-description">Разработка и реализация комплексной digital-кампании для финансового стартапа, включающая контент-маркетинг, таргетированную рекламу и партнерскую программу.</p>
+
+                            <div class="project-results">
+                                <h4>Ключевые результаты:</h4>
+                                <ul>
+                                    <li>Увеличение клиентской базы на 300% за 6 месяцев</li>
+                                    <li>Снижение стоимости привлечения клиента на 40%</li>
+                                    <li>Запуск 3 новых каналов привлечения</li>
+                                </ul>
+                            </div>
+
+                            <div class="project-tech">
+                                <span class="tech-tag">Контент-маркетинг</span>
+                                <span class="tech-tag">Таргетированная реклама</span>
+                                <span class="tech-tag">Аналитика</span>
+                                <span class="tech-tag">SEO</span>
+                                <span class="tech-tag">Партнерские программы</span>
+                            </div>
+                        </div>
+
+                        <!-- Проект 2 -->
+                        <div class="project" id="project2">
+                            <div class="project-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <h3 class="project-title">Rebranding для сети ресторанов</h3>
+                            <p class="project-description">Полный ребрендинг и запуск новой маркетинговой стратегии для сети из 15 ресторанов. Включал разработку нового позиционирования, запуск лояльностной программы и интеграцию с агрегаторами доставки.</p>
+
+                            <div class="project-results">
+                                <h4>Ключевые результаты:</h4>
+                                <ul>
+                                    <li>Рост выручки на 45% за год</li>
+                                    <li>Увеличение среднего чека на 22%</li>
+                                    <li>Запуск мобильного приложения с 25K+ установок</li>
+                                </ul>
+                            </div>
+
+                            <div class="project-tech">
+                                <span class="tech-tag">Ребрендинг</span>
+                                <span class="tech-tag">Стратегия</span>
+                                <span class="tech-tag">Лояльность</span>
+                                <span class="tech-tag">Партнерства</span>
+                                <span class="tech-tag">Мобильное приложение</span>
+                            </div>
+                        </div>
+
+                        <!-- Проект 3 -->
+                        <div class="project" id="project3">
+                            <div class="project-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <h3 class="project-title">E-commerce проект для fashion-бренда</h3>
+                            <p class="project-description">Создание и продвижение интернет-магазина для fashion-бренда с нуля. Реализация CRM-системы, настройка сквозной аналитики и автоматизации маркетинга.</p>
+
+                            <div class="project-results">
+                                <h4>Ключевые результаты:</h4>
+                                <ul>
+                                    <li>Увеличение онлайн-продаж на 200% за первый год</li>
+                                    <li>Снижение оттока клиентов на 35%</li>
+                                    <li>Внедрение CRM с 95% покрытием клиентской базы</li>
+                                </ul>
+                            </div>
+
+                            <div class="project-tech">
+                                <span class="tech-tag">E-commerce</span>
+                                <span class="tech-tag">CRM</span>
+                                <span class="tech-tag">Аналитика</span>
+                                <span class="tech-tag">Автоматизация</span>
+                                <span class="tech-tag">Email-маркетинг</span>
+                            </div>
+                        </div>
+
+                        <!-- Проект 4 -->
+                        <div class="project" id="project4">
+                            <div class="project-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h3 class="project-title">Запуск мобильного приложения</h3>
+                            <p class="project-description">Разработка стратегии запуска мобильного приложения для службы доставки. Включала пре-лаунч активность, работу с инфлюенсерами и запуск рекламных кампаний в социальных сетях.</p>
+
+                            <div class="project-results">
+                                <h4>Ключевые результаты:</h4>
+                                <ul>
+                                    <li>Более 50 000 установок в первый месяц</li>
+                                    <li>Средний рейтинг 4.8 в AppStore и Google Play</li>
+                                    <li>Привлечение 15 инфлюенсеров с общим охватом 2M+</li>
+                                </ul>
+                            </div>
+
+                            <div class="project-tech">
+                                <span class="tech-tag">Мобильный маркетинг</span>
+                                <span class="tech-tag">Инфлюенсеры</span>
+                                <span class="tech-tag">ASO</span>
+                                <span class="tech-tag">Социальные сети</span>
+                                <span class="tech-tag">Партнерский маркетинг</span>
+                            </div>
+                        </div>
+
+                        <!-- Проект 5 -->
+                        <div class="project" id="project5">
+                            <div class="project-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <h3 class="project-title">Корпоративный портал для международной компании</h3>
+                            <p class="project-description">Создание и внедрение корпоративного портала для улучшения внутренних коммуникаций в компании с 2000+ сотрудниками. Интеграция с существующими системами и обучение пользователей.</p>
+
+                            <div class="project-results">
+                                <h4>Ключевые результаты:</h4>
+                                <ul>
+                                    <li>Сокращение времени на поиск информации на 65%</li>
+                                    <li>Увеличение вовлеченности сотрудников на 40%</li>
+                                    <li>Обучение 2000+ сотрудников работе с системой</li>
+                                </ul>
+                            </div>
+
+                            <div class="project-tech">
+                                <span class="tech-tag">Корпоративные коммуникации</span>
+                                <span class="tech-tag">Внедрение ПО</span>
+                                <span class="tech-tag">Обучение</span>
+                                <span class="tech-tag">Техническая документация</span>
+                                <span class="tech-tag">Change Management</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Навигация для проектов -->
+                    <div class="projects-navigation">
+                        <div class="project-controls">
+                            <div class="project-nav">
+                                <button id="prev-project"><i class="fas fa-chevron-left"></i></button>
+                                <button id="next-project"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                            <div class="project-counter">
+                                <span id="current-project">1</span> / <span id="total-projects">5</span>
+                            </div>
+                        </div>
+
+                        <div class="project-dots">
+                            <div class="dot active" data-index="0"></div>
+                            <div class="dot" data-index="1"></div>
+                            <div class="dot" data-index="2"></div>
+                            <div class="dot" data-index="3"></div>
+                            <div class="dot" data-index="4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция контактов -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Свяжитесь со мной</h2>
+            <p class="contact-subtitle">Есть вопросы или хотите обсудить проект? Заполните форму ниже, и я свяжусь с вами в ближайшее время.</p>
+
+            <div class="contact-form-container">
+                <form id="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Ваше имя</label>
+                            <input type="text" id="name" class="form-input" placeholder="Введите ваше имя" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Ваш email</label>
+                            <input type="email" id="email" class="form-input" placeholder="Введите ваш email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="subject" class="form-label">Тема сообщения</label>
+                            <input type="text" id="subject" class="form-input" placeholder="О чем вы хотите поговорить?" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="message" class="form-label">Ваше сообщение</label>
+                            <textarea id="message" class="form-textarea" placeholder="Расскажите подробнее о вашем проекте или вопросе..." required></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="form-submit">
+                        <i class="fas fa-paper-plane"></i> Отправить сообщение
+                    </button>
+                </form>
+
+                <div class="contact-info-side">
+                    <div class="contact-method">
+                        <i class="fas fa-envelope"></i>
+                        <h4>Email</h4>
+                        <p>alex.ivanov@portfolio.com</p>
+                    </div>
+
+                    <div class="contact-method">
+                        <i class="fas fa-phone"></i>
+                        <h4>Телефон</h4>
+                        <p>+7 (999) 123-45-67</p>
+                    </div>
+
+                    <div class="contact-method">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h4>Местоположение</h4>
+                        <p>Москва, Россия</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>alex.ivanov@portfolio.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+7 (999) 123-45-67</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Москва, Россия</span>
+                </div>
+            </div>
+            <p class="copyright">© 2023 Александр Иванов. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Инициализация GSAP
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Логика переключения проектов
+        document.addEventListener('DOMContentLoaded', function() {
+            // Анимация кнопки скачивания резюме
+            const downloadBtn = document.querySelector('.download-resume');
+            // Сначала показываем кнопку без анимации
+            downloadBtn.style.opacity = '1';
+            downloadBtn.style.transform = 'translateY(0)';
+
+            // Затем добавляем плавную анимацию появления
+            setTimeout(() => {
+                downloadBtn.classList.add('visible');
+            }, 100);
+
+            const projects = document.querySelectorAll('.project');
+            const prevBtn = document.getElementById('prev-project');
+            const nextBtn = document.getElementById('next-project');
+            const dots = document.querySelectorAll('.dot');
+            const currentProjectSpan = document.getElementById('current-project');
+            const totalProjectsSpan = document.getElementById('total-projects');
+
+            let currentProjectIndex = 0;
+            totalProjectsSpan.textContent = projects.length;
+
+            // Показ проекта по индексу
+            function showProject(index) {
+                // Проверяем границы
+                if (index < 0) index = projects.length - 1;
+                if (index >= projects.length) index = 0;
+
+                // Убираем все классы у проектов
+                projects.forEach(project => {
+                    project.classList.remove('active');
+                    project.style.opacity = '0';
+                    project.style.visibility = 'hidden';
+                    project.style.transform = 'translateX(30px)';
+                });
+
+                // Убираем активный класс со всех точек
+                dots.forEach(dot => {
+                    dot.classList.remove('active');
+                });
+
+                // Показываем новый проект
+                projects[index].classList.add('active');
+                projects[index].style.opacity = '1';
+                projects[index].style.visibility = 'visible';
+                projects[index].style.transform = 'translateX(0)';
+
+                dots[index].classList.add('active');
+
+                // Обновляем счетчик
+                currentProjectSpan.textContent = index + 1;
+                currentProjectIndex = index;
+            }
+
+            // Следующий проект
+            nextBtn.addEventListener('click', function() {
+                showProject(currentProjectIndex + 1);
+            });
+
+            // Предыдущий проект
+            prevBtn.addEventListener('click', function() {
+                showProject(currentProjectIndex - 1);
+            });
+
+            // Навигация по точкам
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    showProject(index);
+                });
+            });
+
+            // Инициализация первого проекта
+            showProject(0);
+
+            // Плавный скролл для кнопки прокрутки вниз
+            document.querySelector('.scroll-down').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector('#experience').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+
+            // Добавляем проверку нажатия клавиш для навигации
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft') {
+                    showProject(currentProjectIndex - 1);
+                } else if (e.key === 'ArrowRight') {
+                    showProject(currentProjectIndex + 1);
+                }
+            });
+
+            // Обработка формы контактов
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    // Сбор данных формы
+                    const formData = {
+                        name: document.getElementById('name').value,
+                        email: document.getElementById('email').value,
+                        subject: document.getElementById('subject').value,
+                        message: document.getElementById('message').value
+                    };
+
+                    // Здесь обычно отправка данных на сервер
+                    // Для демонстрации просто покажем сообщение
+
+                    // Визуальная обратная связь
+                    const submitButton = contactForm.querySelector('.form-submit');
+                    const originalText = submitButton.innerHTML;
+
+                    submitButton.innerHTML = '<i class="fas fa-check"></i> Сообщение отправлено!';
+                    submitButton.style.background = 'linear-gradient(90deg, #2E7D32, #4CAF50)';
+
+                    // Очистка формы
+                    contactForm.reset();
+
+                    // Возврат к исходному состоянию через 3 секунды
+                    setTimeout(() => {
+                        submitButton.innerHTML = originalText;
+                        submitButton.style.background = 'linear-gradient(90deg, #4CAF50, #8BC34A)';
+                    }, 3000);
+
+                    // Вывод в консоль для демонстрации
+                    console.log('Форма отправлена:', formData);
+                });
+            }
+
+            // Анимация появления элементов при скролле
+            gsap.utils.toArray('.company-list li').forEach(element => {
+                gsap.from(element, {
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 80%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    opacity: 0,
+                    y: 50,
+                    duration: 1
+                });
+            });
+
+            // Анимация для заголовка секции
+            gsap.from('.section-title', {
+                scrollTrigger: {
+                    trigger: '.experience',
+                    start: 'top 70%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 0,
+                y: 30,
+                duration: 1.2
+            });
+
+            // Анимация для секции контактов
+            gsap.from('.contact h2, .contact-subtitle', {
+                scrollTrigger: {
+                    trigger: '.contact',
+                    start: 'top 70%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 0,
+                y: 30,
+                duration: 1.2,
+                stagger: 0.2
+            });
+
+            // Анимация для формы
+            gsap.from('.contact-form-container', {
+                scrollTrigger: {
+                    trigger: '.contact',
+                    start: 'top 60%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1.5,
+                delay: 0.3
+            });
+
+            // Анимация для героя
+            gsap.from('.hero-content', {
+                duration: 1.5,
+                opacity: 0,
+                y: 50,
+                ease: 'power3.out'
+            });
+
+            // Анимация для фото
+            gsap.from('.profile-image', {
+                duration: 1.8,
+                opacity: 0,
+                x: 100,
+                ease: 'power3.out',
+                delay: 0.5
+            });
+        });
+    </script>
+</body>
+</html>
