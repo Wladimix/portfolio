@@ -1,0 +1,146 @@
+.projects-section {
+    border-radius: calc(var(--calculated-adaptive) / 55);
+    padding: calc(var(--calculated-adaptive) / 70);
+    border: 1px solid var(--border-soft);
+    margin-bottom: calc(var(--calculated-adaptive) / 55);
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--calculated-adaptive) / 85);
+    font-size: calc(var(--calculated-adaptive) / 20);
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: calc(var(--calculated-adaptive) / 85);
+}
+
+.projects-swiper {
+    width: 100%;
+    overflow: hidden;
+}
+
+.swiper-wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+.swiper-slide {
+    height: auto;
+    display: flex;
+    flex-shrink: 0;
+    width: 100%;
+}
+
+.project-card {
+    background: rgba(252, 249, 245, 0.8);
+    border-radius: calc(var(--calculated-adaptive) / 55);
+    padding: calc(var(--calculated-adaptive) / 85);
+    border: 2px solid transparent;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.2s ease, background 0.2s ease;
+    margin-left: calc(var(--calculated-adaptive) / 115);
+    margin-right: calc(var(--calculated-adaptive) / 115);
+}
+
+.project-card:hover {
+    border-color: var(--accent-wheat);
+    background: rgba(252, 249, 245, 0.95);
+}
+
+.project-icon {
+    font-size: calc(var(--calculated-adaptive) / 25);
+    background: rgba(222, 231, 237, 0.7);
+    width: calc(var(--calculated-adaptive) / 12);
+    height: calc(var(--calculated-adaptive) / 12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40% 60% 40% 60%;
+    color: var(--primary-dark);
+    border: 2px solid white;
+}
+
+.project-card h3 {
+    font-size: calc(var(--calculated-adaptive) / 25);
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: calc(var(--calculated-adaptive) / 150);
+}
+
+.project-description {
+    background: rgba(255, 255, 255, 0.7);
+    padding: calc(var(--calculated-adaptive) / 200) calc(var(--calculated-adaptive) / 90);
+    border-radius: calc(var(--calculated-adaptive) / 55);
+    margin-bottom: calc(var(--calculated-adaptive) / 20);
+    font-size: calc(var(--calculated-adaptive) / 35);
+    border: 1px solid #e5dad1;
+    color: var(--text-soft);
+}
+
+.project-sub h4 {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--calculated-adaptive) / 200);
+    font-size: calc(var(--calculated-adaptive) / 35);
+    color: var(--primary-dark);
+    border-bottom: 2px dotted var(--accent-wheat);
+    margin-bottom: calc(var(--calculated-adaptive) / 80);
+}
+
+.project-sub ul {
+    font-size: calc(var(--calculated-adaptive) / 35);
+    margin-left: calc(var(--calculated-adaptive) / 40);
+    color: var(--text-soft);
+}
+
+.project-sub li {
+    margin-bottom: calc(var(--calculated-adaptive) / 250);
+}
+
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--calculated-adaptive) / 40);
+    margin-top: calc(var(--calculated-adaptive) / 25)
+}
+
+.tech-tag {
+    background: rgba(239, 233, 226, 0.7);
+    border: 1px solid #cfc3b8;
+    padding: calc(var(--calculated-adaptive) / 230) calc(var(--calculated-adaptive) / 85);
+    border-radius: calc(var(--calculated-adaptive) / 55);
+    font-size: calc(var(--calculated-adaptive) / 40);
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.swiper-pagination-custom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: calc(var(--calculated-adaptive) / 155);
+    margin: calc(var(--calculated-adaptive) / 55);
+}
+
+.swiper-pagination-bullet {
+    width: calc(var(--calculated-adaptive) / 100);
+    height: calc(var(--calculated-adaptive) / 100);
+    background: #cfc3b8;
+    border-radius: calc(var(--calculated-adaptive) / 55);
+    transition: 0.2s;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--accent-wheat);
+    width: calc(var(--calculated-adaptive) / 30);
+    opacity: 1;
+}
+
+.swiper-button-prev, .swiper-button-next {
+    display: none;
+}
