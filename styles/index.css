@@ -1,0 +1,330 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Montserrat', 'Roboto', sans-serif;
+    background-color: #000;
+    overflow: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.split {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.half {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+}
+
+.half-black {
+    background-color: #000;
+    width: 45%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.half-white {
+    background-color: #fff;
+    width: 55%;
+    height: 100%;
+    clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 2.5rem 0 2rem 0;
+    z-index: 2;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #000 #f0f0f0;
+}
+
+.half-white::-webkit-scrollbar {
+    width: 8px;
+}
+
+.half-white::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 0;
+}
+
+.half-white::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 0;
+    border: 1px solid #fff;
+}
+
+.half-white::-webkit-scrollbar-thumb:hover {
+    background: #333;
+}
+
+.black-header {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    display: flex;
+    gap: 1.5rem;
+    z-index: 10;
+}
+
+.photo-container {
+    position: absolute;
+    top: 5rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.portrait {
+    display: block;
+    width: 90%;
+    max-width: 600px;
+    filter: grayscale(20%) contrast(1.05);
+}
+
+.nav-btn {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 8px;
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+}
+
+.nav-btn:hover {
+    background: white;
+    color: black;
+    border-color: white;
+}
+
+.name-block {
+    margin-left: 20%;
+    margin-bottom: 0.3rem;
+    padding-right: 3rem;
+}
+
+.role-block {
+    margin-left: 20%;
+    margin-bottom: 1.2rem;
+    padding-right: 3rem;
+}
+
+.greeting-block {
+    margin-left: 16%;
+    margin-bottom: 1.5rem;
+    max-width: 85%;
+    padding-right: 3rem;
+}
+
+.title-block {
+    margin-left: 12%;
+    margin-bottom: 0.8rem;
+    padding-right: 3rem;
+}
+
+.list-block {
+    margin-left: 12%;
+    margin-bottom: 1.5rem;
+    padding-right: 3rem;
+}
+
+.links-block {
+    margin-left: 8%;
+    margin-bottom: 0.5rem;
+    padding-right: 3rem;
+}
+
+.note-block {
+    margin-left: 8%;
+    padding-right: 3rem;
+}
+
+.name {
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #000;
+}
+
+.role {
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #222;
+}
+
+.greeting {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #333;
+    font-weight: 400;
+    text-align: justify;
+}
+
+.experience-title {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    color: #000;
+    border-bottom: 2px solid #000;
+    padding-bottom: 0.3rem;
+    display: inline-block;
+    width: fit-content;
+}
+
+.experience-list {
+    list-style: none;
+    width: 100%;
+}
+
+.experience-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.2rem;
+    line-height: 1.4;
+}
+
+.company {
+    font-weight: 700;
+    color: #000;
+    font-size: 1rem;
+    margin-bottom: 0.15rem;
+}
+
+.date {
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: #555;
+    background: #f0f0f0;
+    padding: 0.15rem 0.5rem;
+    display: inline-block;
+    margin-bottom: 0.2rem;
+    border-radius: 0;
+    max-width: fit-content;
+    width: auto;
+    white-space: nowrap;
+}
+
+.position {
+    color: #222;
+    font-style: italic;
+    font-size: 0.95rem;
+}
+
+.mini-links {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+
+.mini-links a {
+    text-decoration: none;
+    color: #000;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.mini-links a:hover {
+    border-bottom-color: #000;
+}
+
+.note {
+    font-size: 0.75rem;
+    color: #888;
+}
+
+@media (max-width: 800px) {
+    body {
+        overflow-y: auto;
+    }
+    .split {
+        flex-direction: column;
+        height: auto;
+    }
+    .half-black, .half-white {
+        width: 100%;
+        height: auto;
+        min-height: 50vh;
+        clip-path: none;
+        margin-left: 0;
+        padding: 2rem;
+        box-shadow: none;
+    }
+    .half-white {
+        padding: 2rem;
+    }
+    .portrait {
+        width: 60%;
+        max-width: 260px;
+    }
+    .black-header {
+        left: 1rem;
+        top: 1rem;
+    }
+    .nav-btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.8rem;
+    }
+    .name-block, .role-block, .greeting-block, .title-block,
+    .list-block, .links-block, .note-block {
+        margin-left: 0;
+        max-width: 100%;
+    }
+}
+
+@media (max-height: 650px) {
+    .half-white {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+    .name {
+        font-size: 2.4rem;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #fff;
+    border: 1px solid #000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ccc;
+}
