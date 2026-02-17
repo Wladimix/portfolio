@@ -1,0 +1,6 @@
+.footnote {
+    text-align: center;
+    padding-top: calc(var(--calculated-adaptive) / 100);
+    border-top: 2px dashed #cfc3b8;
+    color: var(--text-soft);
+}
