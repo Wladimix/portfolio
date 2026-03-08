@@ -27,6 +27,8 @@ const Scene = () => {
 				enableDamping
 				enablePan={false}
 				enableZoom={!isTablet}
+				enableRotate={!isTablet}
+				enabled={!isMobile}
 			/>
 		</>
 	);
