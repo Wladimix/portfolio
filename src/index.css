@@ -31,7 +31,7 @@ section {
 	}
 
 	.hero-text {
-		@apply flex flex-col justify-center md:text-[55px] text-[25px] font-semibold relative z-10 pointer-events-none;
+		@apply flex flex-col justify-center md:text-[55px] text-[22px] font-semibold relative z-10 pointer-events-none;
 		img {
 			@apply size-8 md:size-10 object-contain;
 		}
