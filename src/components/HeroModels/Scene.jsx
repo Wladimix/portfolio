@@ -2,8 +2,10 @@ import { OrbitControls, Environment } from "@react-three/drei";
 import Photo from "./Photo";
 import Glass from "./Glass";
 import AnimatedGroup from "./AnimatedGroup";
+import { useMediaQuery } from "react-responsive";
 
 const Scene = () => {
+	const isTablet = useMediaQuery({ query: "(max-width: 1024px)" });
 	const hdriUrl = "models/royal_esplanade_2k.hdr";
 
 	return (
@@ -20,7 +22,11 @@ const Scene = () => {
 				<Glass />
 			</AnimatedGroup>
 
-			<OrbitControls enableDamping enablePan={false} />
+			<OrbitControls
+				enableDamping
+				enablePan={false}
+				enableZoom={!isTablet}
+			/>
 		</>
 	);
 };
