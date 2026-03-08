@@ -4,8 +4,8 @@ import Scene from "./Scene";
 const HeroVisual = () => {
 	return (
 		<Canvas
+			className="w-full h-screen"
 			camera={{ position: [0, 0, 7], fov: 45, near: 0.1, far: 100 }}
-			style={{ width: "100%", height: "100vh" }} // TODO: перенести в стили
 			dpr={window.devicePixelRatio}
 			gl={{
 				antialias: true,
