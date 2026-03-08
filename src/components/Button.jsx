@@ -4,7 +4,7 @@ const Button = ({ text, className }) => {
 			className={`${className ?? ""} cta-wrapper`}
 			onClick={e => {
 				e.preventDefault();
-				// TODO: сюда добавится прокрутка к следующей секции
+				// TODO: сюда добавится прокрутка к следующей секции (на 1:28:45 показана плавная прокрутка)
 				// const target = document.getElementById("");
 
 				// if (target && id) {
