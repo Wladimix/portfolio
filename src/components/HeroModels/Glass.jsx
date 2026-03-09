@@ -7,14 +7,16 @@ const Glass = () => {
 	useLayoutEffect(() => {
 		if (!meshRef.current) return;
 
+		const isMobile = window.innerWidth < 768;
+
 		const extrudeSettings = {
 			depth: 1.0,
 			bevelEnabled: true,
-			bevelSegments: 8,
+			bevelSegments: isMobile ? 2 : 8,
 			steps: 2,
 			bevelSize: 0.08,
 			bevelThickness: 0.1,
-			curveSegments: 64,
+			curveSegments: isMobile ? 16 : 64,
 		};
 
 		const geometry = new THREE.ExtrudeGeometry(

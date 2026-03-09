@@ -6,14 +6,17 @@ const AnimatedGroup = ({ children, isMobile }) => {
 	const timeRef = useRef(0);
 
 	useFrame((_, delta) => {
-		timeRef.current += delta;
-
-		groupRef.current.rotation.y += delta * 0.5;
-
-		groupRef.current.rotation.x = Math.cos(timeRef.current * 0.5) * 0.2;
-
-		groupRef.current.rotation.z =
-			Math.sin(timeRef.current * 0.3 * 0.7) * 0.1;
+		if (isMobile) {
+			timeRef.current += delta * 0.5;
+			groupRef.current.rotation.y = Math.sin(timeRef.current * 0.2) * 0.1;
+			groupRef.current.rotation.x = Math.sin(timeRef.current * 0.15) * 0.05;
+		} else {
+			timeRef.current += delta;
+			groupRef.current.rotation.y += delta * 0.5;
+			groupRef.current.rotation.x = Math.cos(timeRef.current * 0.5) * 0.2;
+			groupRef.current.rotation.z =
+				Math.sin(timeRef.current * 0.3 * 0.7) * 0.1;
+		}
 	});
 
 	return (

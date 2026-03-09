@@ -11,16 +11,24 @@ const Scene = () => {
 
 	return (
 		<>
-			<ambientLight intensity={1.0} />
-			<directionalLight position={[-5, 2, -10]} intensity={3.0} />
-			<directionalLight position={[0, 10, 0]} intensity={2.0} />
-			<directionalLight position={[0, 2, 10]} intensity={1.0} />
+			{!isMobile && (
+				<>
+					<ambientLight intensity={1.0} />
+					<directionalLight position={[-5, 2, -10]} intensity={3.0} />
+					<directionalLight position={[0, 10, 0]} intensity={2.0} />
+					<directionalLight position={[0, 2, 10]} intensity={1.0} />
 
-			<Environment files={hdriUrl} intensity={1.0} background={false} />
+					<Environment files={hdriUrl} intensity={1.0} background={false} />
+				</>
+			)}
+
+			{isMobile && (
+				<ambientLight intensity={0.3} />
+			)}
 
 			<AnimatedGroup isMobile={isMobile}>
-				<Photo />
-				<Glass />
+				<Photo isMobile={isMobile} />
+				{!isMobile && <Glass />}
 			</AnimatedGroup>
 
 			<OrbitControls
