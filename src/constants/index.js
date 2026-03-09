@@ -5,7 +5,7 @@ export const navLinks = [
 	},
 	{
 		name: "Навыки",
-		link: "#",
+		link: "#skills",
 	},
 	{
 		name: "Обо мне",
@@ -201,6 +201,27 @@ export const expCards = [
 			"UniFi Network",
 			"Windows, Linux",
 		],
+	},
+];
+
+export const skills = [
+	{
+		stars: 4,
+		description:
+			"Обладаю хорошим пониманием синтаксиса современного JavaScript (ES6+). Свободно оперирую основными типами данных, уверенно использую функции высшего порядка (map, filter, reduce). Владею синтаксисом промисов и async/await для управления асинхронностью, понимаю работу замыканий и областей видимости. Умею применять такие особенности, как деструктуризация, spread/rest операторы, опциональнуя цепочка (?.) и null-объединение (??).",
+		name: "JavaScript",
+		imgPath: "images/javascript.svg",
+		color: "#F7DF1E",
+		level: "middle+",
+	},
+	{
+		stars: 3,
+		description:
+			"Уверенно расставляю аннотации типов для примитивов, объектов, массивов, кортежей и перечислений (enums). Применяю interface и type для описания сложных структур данных, а также такие концепции, как Union Types, наследование, Literal Types и защитники типов (type guards) для сужения типов. Понимаю дженерики и некоторые утилитарные типы (Partial, Pick, Omit).",
+		name: "TypeScript",
+		imgPath: "images/typescript.svg",
+		color: "#3178C6",
+		level: "middle",
 	},
 ];
 
