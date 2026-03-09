@@ -1,5 +1,3 @@
-import "./ElectricBorderCard.css";
-
 const ElectricBorderCard = () => {
 	return (
 		<div className="card-container">
