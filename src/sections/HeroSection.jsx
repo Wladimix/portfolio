@@ -72,7 +72,7 @@ const Hero = () => {
 
 						<Button
 							className="md:w-80 md:h-16 w-60 h-12"
-							id="button"
+							id="companies"
 							text="О моём опыте"
 						/>
 					</div>

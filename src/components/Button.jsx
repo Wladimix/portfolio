@@ -1,22 +1,22 @@
-const Button = ({ text, className }) => {
+const Button = ({ text, className, id }) => {
 	return (
 		<a
 			className={`${className ?? ""} cta-wrapper`}
 			onClick={e => {
 				e.preventDefault();
-				// TODO: сюда добавится прокрутка к следующей секции
-				// const target = document.getElementById("");
 
-				// if (target && id) {
-				// 	const offset = window.innerHeight * 0.15;
+				const target = document.getElementById(id);
 
-				// 	const top =
-				// 		target.getBoundingClientRect().top +
-				// 		window.scrollY -
-				// 		offset;
+				if (target && id) {
+					const offset = window.innerHeight * 0.15;
 
-				// 	window.scrollTo({ top, behavior: "smooth" });
-				// }
+					const top =
+						target.getBoundingClientRect().top +
+						window.scrollY -
+						offset;
+
+					window.scrollTo({ top, behavior: "smooth" });
+				}
 			}}
 		>
 			<div className="cta-button group">

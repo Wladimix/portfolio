@@ -1,7 +1,7 @@
 export const navLinks = [
 	{
 		name: "Опыт",
-		link: "#experience",
+		link: "#companies",
 	},
 	{
 		name: "Навыки",
@@ -21,6 +21,24 @@ export const words = [
 	{
 		text: "Frontend",
 		imgPath: "images/frontend.svg",
+	},
+];
+
+export const companies = [
+	{
+		title: "СофтХардМейкерз (стартап)",
+		post: "Веб разработчик",
+		date: "Январь 2023 — Февраль 2024 (1 год и 2 месяца)",
+	},
+	{
+		title: "Эм Си Арт",
+		post: "Веб разработчик",
+		date: "Март 2024 — Июль 2024 (5 месяцев)",
+	},
+	{
+		title: "Тепличный комплекс Сосногорский",
+		post: "Системный администратор",
+		date: "Апрель 2025 — Октябрь 2025 (7 месяцев)",
 	},
 ];
 
