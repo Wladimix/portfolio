@@ -2,7 +2,7 @@ import ElectricBorderCard from "./ElectricBorderCard";
 
 const ElectricBorderSection = () => {
 	return (
-		<section className="electric-border-section">
+		<section id="about" className="electric-border-section">
 			<svg className="svg-container">
 				<defs>
 					<filter
@@ -20,7 +20,12 @@ const ElectricBorderSection = () => {
 							result="noise1"
 							seed="1"
 						/>
-						<feOffset in="noise1" dx="0" dy="0" result="offsetNoise1">
+						<feOffset
+							in="noise1"
+							dx="0"
+							dy="0"
+							result="offsetNoise1"
+						>
 							<animate
 								attributeName="dy"
 								values="700; 0"
@@ -37,7 +42,12 @@ const ElectricBorderSection = () => {
 							result="noise2"
 							seed="1"
 						/>
-						<feOffset in="noise2" dx="0" dy="0" result="offsetNoise2">
+						<feOffset
+							in="noise2"
+							dx="0"
+							dy="0"
+							result="offsetNoise2"
+						>
 							<animate
 								attributeName="dy"
 								values="0; -700"
@@ -54,7 +64,12 @@ const ElectricBorderSection = () => {
 							result="noise1"
 							seed="2"
 						/>
-						<feOffset in="noise1" dx="0" dy="0" result="offsetNoise3">
+						<feOffset
+							in="noise1"
+							dx="0"
+							dy="0"
+							result="offsetNoise3"
+						>
 							<animate
 								attributeName="dx"
 								values="490; 0"
@@ -71,7 +86,12 @@ const ElectricBorderSection = () => {
 							result="noise2"
 							seed="2"
 						/>
-						<feOffset in="noise2" dx="0" dy="0" result="offsetNoise4">
+						<feOffset
+							in="noise2"
+							dx="0"
+							dy="0"
+							result="offsetNoise4"
+						>
 							<animate
 								attributeName="dx"
 								values="0; -490"

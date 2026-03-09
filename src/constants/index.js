@@ -9,7 +9,7 @@ export const navLinks = [
 	},
 	{
 		name: "Обо мне",
-		link: "#",
+		link: "#about",
 	},
 ];
 
