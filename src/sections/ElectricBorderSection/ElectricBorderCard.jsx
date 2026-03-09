@@ -14,7 +14,7 @@ const ElectricBorderCard = () => {
 
 						<div className="content-container">
 							<div className="content-top">
-								<div className="scrollbar-glass">Резюме</div>
+								<a href="#" className="scrollbar-glass">Резюме</a>
 								<p className="title">Обо мне</p>
 							</div>
 

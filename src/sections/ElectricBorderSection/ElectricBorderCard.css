@@ -201,6 +201,9 @@
 	font-weight: bold;
 	font-size: clamp(12px, 2vw, 28px);
 	color: rgba(255, 255, 255, 0.8);
+	cursor: pointer;
+	text-decoration: none;
+	display: inline-block;
 }
 
 .scrollbar-glass:hover {
