@@ -220,6 +220,21 @@ section {
 	);
 }
 
+/* Electric Border Section */
+.electric-border-section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	position: relative;
+	padding: 50px 20px;
+}
+
+.svg-container {
+	position: absolute;
+}
+
 .marquee {
 	width: 100dvw;
 	overflow: hidden;
