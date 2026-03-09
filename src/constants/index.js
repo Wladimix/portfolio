@@ -174,10 +174,14 @@ export const expCards = [
 			"Техническая поддержка сотрудников предприятия",
 		],
 		technologies: [
-			"HTML",
-			"JavaScript (Node.JS, Express.JS)",
-			"NoSQL (MongoDB)",
 			"Docker",
+			"k3s",
+			"PowerShell, BASH",
+			"Acronis Backup",
+			"Zabbix",
+			"TRASSIR",
+			"UniFi Network",
+			"Windows, Linux",
 		],
 	},
 ];
