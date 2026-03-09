@@ -65,14 +65,12 @@ const ExperienceSection = () => {
 								<div className="xl:w-4/6">
 									<div className="flex items-start">
 										<div className="expText flex xl:gap-20 md:gap-10 gap-5 relative border-l-2 border-gradient-line pl-10">
-											{isMobile || (
-												<div className="timeline-logo absolute -left-10 -top-10">
-													<img
-														src={card.logoPath}
-														alt="logo"
-													/>
-												</div>
-											)}
+											<div className="timeline-logo absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2">
+												<img
+													src={card.logoPath}
+													alt="logo"
+												/>
+											</div>
 
 											<div>
 												<h1 className="font-semibold text-3xl mb-2">
