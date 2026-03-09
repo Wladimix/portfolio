@@ -602,6 +602,18 @@ section {
 		min-height: 450px;
 	}
 
+	.main-card::before {
+		display: none;
+	}
+
+	.glow-layer-1,
+	.glow-layer-2,
+	.overlay-1,
+	.overlay-2,
+	.background-glow {
+		display: none;
+	}
+
 	.content-top {
 		padding: 24px 28px;
 		padding-bottom: 12px;
