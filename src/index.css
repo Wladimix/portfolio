@@ -316,10 +316,6 @@ section {
 	width: 10px;
 }
 
-::-webkit-scrollbar-track {
-	background: #0e0e10;
-}
-
 ::-webkit-scrollbar-thumb {
 	background: linear-gradient(
 		180deg,
@@ -328,7 +324,6 @@ section {
 		#fd5c79 62.83%,
 		#6d45ce 100%
 	);
-	border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
