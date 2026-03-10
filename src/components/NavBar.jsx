@@ -36,7 +36,11 @@ const NavBar = () => {
 					</ul>
 				</nav>
 
-				<a href="#" className="resume-btn group" target="blank">
+				<a
+					href="https://ukhta.hh.ru/resume/f519587bff1036af350039ed1f6b39314f3077"
+					className="resume-btn group"
+					target="blank"
+				>
 					<div className="inner">
 						<span>Моё резюме</span>
 					</div>
